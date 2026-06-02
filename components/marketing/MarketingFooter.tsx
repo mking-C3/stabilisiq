@@ -13,9 +13,10 @@ export default function MarketingFooter() {
             </span>
           </div>
           <div className="flex flex-wrap gap-x-7 gap-y-2 font-mono text-[13px] uppercase tracking-[0.18em] text-ink-300">
-            <a href="#work" className="hover:text-paper transition">Work</a>
-            <a href="#modes" className="hover:text-paper transition">Modes</a>
-            <a href="#loop" className="hover:text-paper transition">Loop</a>
+            <a href="/#work" className="hover:text-paper transition">Work</a>
+            <a href="/#modes" className="hover:text-paper transition">Modes</a>
+            <a href="/#loop" className="hover:text-paper transition">Loop</a>
+            <a href="/about" className="hover:text-paper transition">About</a>
             <a
               href="https://hvac.stabilisiq.com"
               target="_blank"
