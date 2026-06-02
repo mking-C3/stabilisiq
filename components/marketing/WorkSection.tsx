@@ -1,19 +1,17 @@
-// ─── EDIT THIS LIST TO ADD/REMOVE/REPLACE CASE STUDIES ─────────────────
-// Cards marked TODO need real outcomes from Matt. The structure is fixed
-// so the page layout is stable; just swap the strings.
-//
-// `live` = a working URL the visitor can click to
-// `cta`  = button text on the card. Omit `cta` and the card is read-only.
+// ─── THE WORK ──────────────────────────────────────────────────────────
+// Three real things: a live product, a built tool, and a written playbook.
+// No fabricated client engagements. To add a new card later, mirror the
+// shape and pick a `status` value.
 
 type Work = {
   tag: string;          // small label above title — vertical / discipline
-  title: string;        // the project name
-  problem: string;      // 1 sentence — what was breaking
-  what: string;         // 1 sentence — what we did
-  result: string;       // 1 sentence — measurable outcome
+  title: string;        // the project / playbook name
+  problem: string;      // 1 sentence — what's broken in this domain
+  what: string;         // 1 sentence — what we build / instrument
+  result: string;       // 1 sentence — what changes when it's in place
   live?: string;        // optional URL (opens in new tab)
-  cta?: string;         // optional CTA text
-  status?: "live" | "engagement" | "draft"; // colored badge
+  cta?: string;         // optional CTA text. Omit and the card is read-only.
+  status: "live" | "product" | "playbook";
 };
 
 const WORK: Work[] = [
@@ -23,9 +21,9 @@ const WORK: Work[] = [
     problem:
       "Inbound calls from homeowners go unanswered after-hours. The customer dials the next shop, and a $4,000 service job walks out the door.",
     what:
-      "Built an SMS auto-responder that texts every missed call within 5 seconds, qualifies the issue with a Claude-powered conversation, and books the appointment into the contractor's calendar.",
+      "An SMS auto-responder that texts every missed call within 5 seconds, qualifies the issue with a Claude-powered conversation, and books the appointment straight into the contractor's calendar.",
     result:
-      "Live demo lets a visitor experience the exact text-back a homeowner would get — including the booking flow.",
+      "Try the live demo and see the exact text-back a homeowner would get — including the booking flow.",
     live: "https://hvac.stabilisiq.com",
     cta: "Try the live demo",
     status: "live",
@@ -34,43 +32,23 @@ const WORK: Work[] = [
     tag: "Aviation · Charter",
     title: "QuoteOps Autopilot",
     problem:
-      "Charter operators were taking 30–90 minutes to turn an inbound RFQ into a quote — by which point half the deals had gone to whoever responded first.",
+      "Charter operators take 30–90 minutes to turn an inbound RFQ into a quote — by which point half the deals went to whoever responded first.",
     what:
-      "Built an automated quote workflow: parse the RFQ, validate aircraft fit, build 2–3 priced options with audit trail, send acknowledgement under 2 minutes, human-in-the-loop until confidence thresholds are met.",
+      "An automated quote workflow: parse the RFQ, validate aircraft fit, build 2–3 priced options with audit trail, acknowledgement under 2 minutes, human-in-the-loop until confidence thresholds are met.",
     result:
-      "Time-to-first-quote drops from 30–90 min to 3–10 min — an 80–95% reduction. First-response time under 2 minutes.",
-    status: "live",
+      "Time-to-first-quote drops from 30–90 min to 3–10 min — an 80–95% reduction. First response under 2 minutes.",
+    status: "product",
   },
   {
     tag: "Propane Logistics",
-    title: "Will-Call & Reconciliation Runbooks",
+    title: "Will-Call & Reconciliation Playbook",
     problem:
-      "Will-call follow-ups missed, route changes not reflected in billing, partial fills unreconciled — silent revenue leakage and customers running dry before dispatch noticed.",
+      "Will-call follow-ups missed, route changes not reflected in billing, partial fills unreconciled — silent revenue leakage and customers running dry before dispatch notices.",
     what:
-      "Instrumented dispatch status, will-call SLA timers, delivery exception codes, billing completion lag. Runbook-style interventions trigger automatically when thresholds breach.",
+      "We instrument dispatch status age, will-call SLA timers, delivery exception code patterns, and billing completion lag — then run threshold-based runbooks: aging > 24h escalates, partial-fill variance > 15% flags for review, driver notes surface with context.",
     result:
-      "Customer-facing failures (run-outs, missed deliveries) caught before they happen. Ticket-to-invoice gap closes from weeks to days.",
-    status: "engagement",
-  },
-  // TODO — swap these placeholder slots for real engagements
-  {
-    tag: "TODO · Industry",
-    title: "Engagement title goes here",
-    problem:
-      "TODO — one-sentence description of what was breaking for the client.",
-    what:
-      "TODO — one sentence on what we instrumented, built, or ran.",
-    result:
-      "TODO — one measurable outcome. Numbers if you have them.",
-    status: "draft",
-  },
-  {
-    tag: "TODO · Industry",
-    title: "Engagement title goes here",
-    problem: "TODO",
-    what: "TODO",
-    result: "TODO",
-    status: "draft",
+      "Customer-facing failures caught before they happen. Ticket-to-invoice gap closes from weeks to days. Will-call drift becomes visible instead of compounding silently.",
+    status: "playbook",
   },
 ];
 
@@ -87,13 +65,13 @@ export default function WorkSection() {
             We&apos;ll show, not tell.
           </h2>
           <p className="mt-5 text-ink-500 text-lg leading-relaxed">
-            We&apos;d rather you read what we&apos;ve actually built than what we
-            generally say about ourselves. If one of these looks like your problem,
-            it probably is.
+            Three things we&apos;ve built: a live product you can click into, a tool
+            running in production, and a written playbook detailed enough to argue
+            with. If one looks like your problem, it probably is.
           </p>
         </div>
 
-        {/* Cards grid */}
+        {/* Cards grid: 1 featured + 2 side-by-side underneath */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-5">
           {WORK.map((w, i) => (
             <Card key={i} w={w} featured={i === 0} />
@@ -105,15 +83,11 @@ export default function WorkSection() {
 }
 
 function Card({ w, featured }: { w: Work; featured?: boolean }) {
-  const isDraft = w.status === "draft";
-
   return (
     <article
       className={[
         "group relative rounded-2xl border bg-white p-7 md:p-8 transition",
-        isDraft
-          ? "border-dashed border-ink-200 opacity-60"
-          : "border-ink-900/8 hover:border-ink-900/20 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)]",
+        "border-ink-900/8 hover:border-ink-900/20 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)]",
         featured ? "md:col-span-2" : "",
       ].join(" ")}
     >
@@ -164,12 +138,11 @@ function Field({ label, value }: { label: string; value: string }) {
   );
 }
 
-function StatusBadge({ status }: { status?: Work["status"] }) {
-  if (!status) return null;
+function StatusBadge({ status }: { status: Work["status"] }) {
   const map = {
-    live: { label: "Live", cls: "bg-siq-tint text-siq" },
-    engagement: { label: "Engagement", cls: "bg-ink-100 text-ink-700" },
-    draft: { label: "Coming soon", cls: "bg-ink-100 text-ink-400" },
+    live: { label: "Live demo", cls: "bg-siq-tint text-siq" },
+    product: { label: "Product", cls: "bg-ink-900 text-paper" },
+    playbook: { label: "Playbook", cls: "bg-ink-100 text-ink-700" },
   } as const;
   const { label, cls } = map[status];
   return (
