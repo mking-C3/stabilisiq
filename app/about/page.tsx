@@ -13,7 +13,7 @@ export default function AboutPage() {
       <MarketingNav calendlyUrl={CALENDLY_URL} />
 
       {/* ───── HERO ───────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-ink-900 pt-20 md:pt-28 pb-16 md:pb-20">
+      <section className="relative overflow-hidden bg-ink-900 pt-14 md:pt-20 pb-14 md:pb-16">
         {/* Subtle dot grid — same as homepage hero for visual continuity */}
         <div
           className="absolute inset-0 opacity-[0.08] pointer-events-none"
@@ -73,7 +73,7 @@ export default function AboutPage() {
       </section>
 
       {/* ───── MY FOCUS ─────────────────────────────────────────── */}
-      <section className="bg-ink-800 text-paper py-20 md:py-28 border-t border-paper/5">
+      <section className="bg-ink-800 text-paper py-14 md:py-20 border-t border-paper/5">
         <div className="mx-auto max-w-3xl px-5">
           <SectionKicker n="07" label="My focus" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[44px] font-bold tracking-tightest leading-[1.05]">
@@ -129,7 +129,7 @@ export default function AboutPage() {
       </section>
 
       {/* ───── HOW I WORK ───────────────────────────────────────── */}
-      <section className="bg-ink-900 text-paper py-20 md:py-28 border-t border-paper/5">
+      <section className="bg-ink-900 text-paper py-14 md:py-20 border-t border-paper/5">
         <div className="mx-auto max-w-3xl px-5">
           <SectionKicker n="08" label="How I work" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[44px] font-bold tracking-tightest leading-[1.05]">
@@ -165,7 +165,7 @@ export default function AboutPage() {
       </section>
 
       {/* ───── BACKGROUND (TODO — needs Matt's input) ───────────── */}
-      <section className="bg-ink-800 text-paper py-20 md:py-28 border-t border-paper/5">
+      <section className="bg-ink-800 text-paper py-14 md:py-20 border-t border-paper/5">
         <div className="mx-auto max-w-3xl px-5">
           <SectionKicker n="09" label="Background" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[44px] font-bold tracking-tightest leading-[1.05]">
@@ -201,7 +201,7 @@ export default function AboutPage() {
       </section>
 
       {/* ───── CTA ──────────────────────────────────────────────── */}
-      <section className="relative bg-ink-900 text-paper py-20 md:py-28 border-t border-paper/5 overflow-hidden">
+      <section className="relative bg-ink-900 text-paper py-14 md:py-20 border-t border-paper/5 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.06] pointer-events-none"
           style={{

@@ -39,7 +39,7 @@ import SectionKicker from "./SectionKicker";
 
 export default function LoopSection() {
   return (
-    <section id="loop" className="bg-ink-800 text-paper py-24 md:py-32 border-t border-paper/5">
+    <section id="loop" className="bg-ink-800 text-paper py-14 md:py-20 border-t border-paper/5">
       <div className="mx-auto max-w-6xl px-5">
         <div className="max-w-3xl">
           <SectionKicker n="03" label="The Loop" variant="dark" />

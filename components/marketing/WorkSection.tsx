@@ -56,7 +56,7 @@ const WORK: Work[] = [
 
 export default function WorkSection() {
   return (
-    <section id="work" className="bg-ink-800 text-paper py-24 md:py-32 border-t border-paper/5">
+    <section id="work" className="bg-ink-800 text-paper py-14 md:py-20 border-t border-paper/5">
       <div className="mx-auto max-w-6xl px-5">
         {/* Section header */}
         <div className="max-w-3xl">

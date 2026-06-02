@@ -2,7 +2,7 @@ import SectionKicker from "./SectionKicker";
 
 export default function FinalCTA({ calendlyUrl }: { calendlyUrl: string }) {
   return (
-    <section className="relative bg-ink-900 text-paper py-24 md:py-32 overflow-hidden">
+    <section className="relative bg-ink-900 text-paper py-14 md:py-20 overflow-hidden">
       {/* Same dot grid as hero, gentle continuity */}
       <div
         className="absolute inset-0 opacity-[0.06] pointer-events-none"

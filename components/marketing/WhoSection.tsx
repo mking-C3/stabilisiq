@@ -5,7 +5,7 @@ import SectionKicker from "./SectionKicker";
 
 export default function WhoSection() {
   return (
-    <section className="bg-ink-900 text-paper py-24 md:py-32 border-t border-paper/5">
+    <section className="bg-ink-900 text-paper py-14 md:py-20 border-t border-paper/5">
       <div className="mx-auto max-w-4xl px-5">
         <SectionKicker n="04" label="Who this is for" variant="dark" />
         <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">

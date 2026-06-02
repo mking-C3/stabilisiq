@@ -13,7 +13,7 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
       {/* Right-edge accent line */}
       <div className="absolute right-0 top-0 bottom-0 w-px bg-siq-light/30" />
 
-      <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-32 md:pb-36">
+      <div className="relative mx-auto max-w-6xl px-5 pt-16 pb-20 md:pt-24 md:pb-24">
         {/* Kicker with section index — small typographic detail */}
         <div className="flex items-center gap-3 mb-10">
           <span className="font-mono text-[15px] uppercase tracking-[0.18em] tabular-nums font-semibold text-siq-light">
@@ -25,7 +25,7 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
           </span>
         </div>
 
-        <h1 className="font-display text-[46px] leading-[1.02] md:text-[88px] md:leading-[0.98] font-bold tracking-tightest max-w-5xl">
+        <h1 className="font-display text-[56px] leading-[1.0] md:text-[112px] md:leading-[0.95] font-bold tracking-tightest max-w-5xl">
           Fix what&apos;s broken.
           <br />
           <span className="text-bronze-light italic font-medium">
@@ -60,7 +60,7 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
         </div>
 
         {/* Bottom stats — mono numerals give technical authority */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-paper/10 pt-10 max-w-4xl">
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-paper/10 pt-8 max-w-4xl">
           <Stat n="02" label="Modes" body="Managed engagement, or productized build." />
           <Stat n="00" label="New software" body="We work with what you already run." />
           <Stat n="01" label="Standard" body="Operator-led. Built and run, not advised on." />
