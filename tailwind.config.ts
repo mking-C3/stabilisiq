@@ -48,17 +48,16 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
-          "var(--font-body)",
+          "var(--font-sans)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Inter",
           "Helvetica Neue",
-          "Helvetica",
           "Arial",
           "sans-serif",
         ],
         display: [
-          "var(--font-display)",
+          "var(--font-sans)",
           "-apple-system",
           "BlinkMacSystemFont",
           "Inter",
@@ -66,6 +65,17 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
+        mono: [
+          "var(--font-mono)",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace",
+        ],
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
+        tighter: "-0.03em",
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-out forwards",

@@ -35,38 +35,42 @@ const STEPS = [
   },
 ];
 
+import SectionKicker from "./SectionKicker";
+
 export default function LoopSection() {
   return (
-    <section id="loop" className="bg-ink-50 py-20 md:py-28 border-t border-ink-900/5">
+    <section id="loop" className="bg-ink-50 py-24 md:py-32 border-t border-ink-900/8">
       <div className="mx-auto max-w-6xl px-5">
         <div className="max-w-3xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-siq font-semibold">
-            The Loop
-          </span>
-          <h2 className="mt-4 font-display text-3xl md:text-5xl font-extrabold tracking-[-0.02em] leading-[1.05]">
-            How a managed engagement actually runs.
+          <SectionKicker n="03" label="The Loop" />
+          <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
+            How a managed engagement{" "}
+            <span className="italic font-medium text-ink-500">actually runs.</span>
           </h2>
-          <p className="mt-5 text-ink-500 text-lg leading-relaxed">
+          <p className="mt-6 text-ink-500 text-[18px] leading-[1.55]">
             Not a one-time project. A continuous loop. Each pass leaves the
             operation a little less fragile than the last.
           </p>
         </div>
 
-        <ol className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-3 relative">
+        <ol className="mt-14 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-3 relative">
           {/* Connecting line on desktop */}
-          <div className="hidden md:block absolute top-7 left-[10%] right-[10%] h-px bg-ink-900/10" />
+          <div className="hidden md:block absolute top-8 left-[10%] right-[10%] h-px bg-ink-900/15" />
           {STEPS.map((s, i) => (
             <li
               key={i}
-              className="relative bg-white rounded-2xl p-6 border border-ink-900/8"
+              className="relative bg-white rounded-lg p-6 border border-ink-900/10"
             >
-              <div className="w-14 h-14 rounded-xl bg-siq text-paper flex items-center justify-center font-display text-sm font-extrabold tracking-wider mb-4 relative z-10">
-                {s.n}
+              <div className="flex items-baseline gap-2 mb-4 relative z-10">
+                <span className="inline-block w-3 h-3 rounded-full bg-siq" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.2em] tabular-nums text-ink-500 font-semibold">
+                  Step {s.n}
+                </span>
               </div>
-              <h3 className="font-display text-lg font-bold tracking-tight mb-2">
+              <h3 className="font-display text-[20px] font-semibold tracking-tight mb-2">
                 {s.title}
               </h3>
-              <p className="text-sm text-ink-500 leading-relaxed">{s.body}</p>
+              <p className="text-[14px] text-ink-500 leading-relaxed">{s.body}</p>
             </li>
           ))}
         </ol>

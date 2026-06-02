@@ -1,3 +1,5 @@
+import SectionKicker from "./SectionKicker";
+
 // ─── THE WORK ──────────────────────────────────────────────────────────
 // Three real things: a live product, a built tool, and a written playbook.
 // No fabricated client engagements. To add a new card later, mirror the
@@ -54,17 +56,16 @@ const WORK: Work[] = [
 
 export default function WorkSection() {
   return (
-    <section id="work" className="bg-paper py-20 md:py-28 border-t border-ink-900/5">
+    <section id="work" className="bg-paper py-24 md:py-32 border-t border-ink-900/8">
       <div className="mx-auto max-w-6xl px-5">
         {/* Section header */}
         <div className="max-w-3xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-siq font-semibold">
-            The Work
-          </span>
-          <h2 className="mt-4 font-display text-3xl md:text-5xl font-extrabold tracking-[-0.02em] leading-[1.05]">
-            We&apos;ll show, not tell.
+          <SectionKicker n="01" label="The Work" />
+          <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
+            We&apos;ll show.{" "}
+            <span className="italic font-medium text-ink-500">Not tell.</span>
           </h2>
-          <p className="mt-5 text-ink-500 text-lg leading-relaxed">
+          <p className="mt-6 text-ink-500 text-[18px] leading-[1.55]">
             Three things we&apos;ve built: a live product you can click into, a tool
             running in production, and a written playbook detailed enough to argue
             with. If one looks like your problem, it probably is.
@@ -86,19 +87,19 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
   return (
     <article
       className={[
-        "group relative rounded-2xl border bg-white p-7 md:p-8 transition",
-        "border-ink-900/8 hover:border-ink-900/20 hover:shadow-[0_8px_30px_rgba(0,0,0,0.04)]",
+        "group relative rounded-lg border bg-white p-7 md:p-10 transition",
+        "border-ink-900/10 hover:border-ink-900/25 hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.08)]",
         featured ? "md:col-span-2" : "",
       ].join(" ")}
     >
-      <div className="flex items-center justify-between gap-3 mb-4">
-        <span className="text-xs uppercase tracking-[0.18em] text-ink-400 font-semibold">
+      <div className="flex items-center justify-between gap-3 mb-5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">
           {w.tag}
         </span>
         <StatusBadge status={w.status} />
       </div>
 
-      <h3 className="font-display text-2xl md:text-[28px] font-extrabold tracking-tight leading-tight">
+      <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05]">
         {w.title}
       </h3>
 

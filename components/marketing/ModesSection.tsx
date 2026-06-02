@@ -1,15 +1,16 @@
+import SectionKicker from "./SectionKicker";
+
 export default function ModesSection({ calendlyUrl }: { calendlyUrl: string }) {
   return (
-    <section id="modes" className="bg-white py-20 md:py-28 border-t border-ink-900/5">
+    <section id="modes" className="bg-white py-24 md:py-32 border-t border-ink-900/8">
       <div className="mx-auto max-w-6xl px-5">
         <div className="max-w-3xl">
-          <span className="text-xs uppercase tracking-[0.2em] text-siq font-semibold">
-            How we work
-          </span>
-          <h2 className="mt-4 font-display text-3xl md:text-5xl font-extrabold tracking-[-0.02em] leading-[1.05]">
-            Two modes. Same operators.
+          <SectionKicker n="02" label="How we work" />
+          <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
+            Two modes.{" "}
+            <span className="italic font-medium text-ink-500">Same operators.</span>
           </h2>
-          <p className="mt-5 text-ink-500 text-lg leading-relaxed">
+          <p className="mt-6 text-ink-500 text-[18px] leading-[1.55]">
             Start with whichever fits the problem in front of you. Most clients use both
             over time — managed first to surface what&apos;s actually breaking, then a build
             to prevent the next round.
@@ -81,20 +82,20 @@ function ModeCard({
   return (
     <div
       className={[
-        "relative rounded-2xl p-7 md:p-9 flex flex-col",
+        "relative rounded-lg p-8 md:p-10 flex flex-col",
         isDark
           ? "bg-ink-900 text-paper"
           : "bg-siq-tint text-ink-900 ring-1 ring-siq/15",
       ].join(" ")}
     >
       <div
-        className={`text-xs uppercase tracking-[0.18em] font-bold mb-3 ${
+        className={`font-mono text-[10px] uppercase tracking-[0.22em] font-semibold mb-4 ${
           isDark ? "text-siq-light" : "text-siq"
         }`}
       >
         {kicker}
       </div>
-      <h3 className="font-display text-2xl md:text-3xl font-extrabold tracking-tight">
+      <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05]">
         {title}
       </h3>
       <p
