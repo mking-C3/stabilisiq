@@ -43,7 +43,7 @@ export default function FinalCTA({ calendlyUrl }: { calendlyUrl: string }) {
         </div>
         <p className="mt-8 text-center font-mono text-[13px] uppercase tracking-[0.2em] text-ink-300">
           Or skim{" "}
-          <a href="#work" className="text-bronze-light underline underline-offset-4 decoration-bronze/50 hover:decoration-bronze-light transition">
+          <a href="#work" className="text-paper underline underline-offset-4 decoration-paper/40 hover:decoration-paper transition">
             the work
           </a>{" "}
           first

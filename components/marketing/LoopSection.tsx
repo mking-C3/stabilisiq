@@ -54,16 +54,16 @@ export default function LoopSection() {
         </div>
 
         <ol className="mt-14 grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-3 relative">
-          {/* Connecting line on desktop — bronze hairline */}
-          <div className="hidden md:block absolute top-8 left-[10%] right-[10%] h-px bg-bronze/30" />
+          {/* Connecting line on desktop */}
+          <div className="hidden md:block absolute top-8 left-[10%] right-[10%] h-px bg-paper/15" />
           {STEPS.map((s, i) => (
             <li
               key={i}
               className="relative bg-ink-900 rounded-lg p-6 border border-paper/10"
             >
               <div className="flex items-center gap-2.5 mb-4 relative z-10">
-                <span className="inline-block w-3 h-3 rounded-full bg-bronze ring-2 ring-ink-900" />
-                <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums text-bronze-light font-semibold">
+                <span className="inline-block w-3 h-3 rounded-full bg-siq-light ring-2 ring-ink-900" />
+                <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums text-siq-light font-semibold">
                   Step {s.n}
                 </span>
               </div>

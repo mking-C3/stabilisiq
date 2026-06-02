@@ -16,10 +16,10 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
       <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-32 md:pb-36">
         {/* Kicker with section index — small typographic detail */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums font-semibold text-bronze-light">
+          <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums font-semibold text-siq-light">
             § 00
           </span>
-          <span className="h-px w-10 bg-bronze/40" />
+          <span className="h-px w-10 bg-paper/20" />
           <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-ink-200">
             StabilisIQ · operations partner
           </span>
@@ -77,7 +77,7 @@ function Stat({ n, label, body }: { n: string; label: string; body: string }) {
         <span className="font-mono text-3xl md:text-4xl font-medium text-paper tabular-nums tracking-tight">
           {n}
         </span>
-        <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-bronze-light">
+        <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-siq-light">
           {label}
         </span>
       </div>

@@ -94,8 +94,8 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
     >
       <div className="flex items-center justify-between gap-3 mb-7">
         <div className="flex items-center gap-3">
-          <span className="inline-block w-2 h-2 rounded-full bg-bronze" />
-          <span className="font-mono text-[15px] md:text-[16px] uppercase tracking-[0.14em] font-semibold text-bronze-light">
+          <span className="inline-block w-2 h-2 rounded-full bg-siq-light" />
+          <span className="font-mono text-[15px] md:text-[16px] uppercase tracking-[0.14em] font-semibold text-siq-light">
             {w.tag}
           </span>
         </div>
@@ -147,7 +147,7 @@ function StatusBadge({ status }: { status: Work["status"] }) {
   const map = {
     live: { label: "Live demo", cls: "bg-siq text-paper" },
     product: { label: "Product", cls: "bg-paper text-ink-900" },
-    playbook: { label: "Playbook", cls: "bg-bronze/15 text-bronze-light ring-1 ring-bronze/40" },
+    playbook: { label: "Playbook", cls: "bg-paper/10 text-ink-200 ring-1 ring-paper/20" },
   } as const;
   const { label, cls } = map[status];
   return (

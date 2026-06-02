@@ -87,14 +87,10 @@ function ModeCard({
         "relative rounded-lg p-8 md:p-10 flex flex-col bg-ink-800 ring-1 transition",
         isFilled
           ? "ring-siq/45 shadow-[inset_0_1px_0_0_rgba(61,108,217,0.18)]"
-          : "ring-bronze/30 shadow-[inset_0_1px_0_0_rgba(210,165,71,0.12)]",
+          : "ring-paper/10",
       ].join(" ")}
     >
-      <div
-        className={`font-mono text-[13px] uppercase tracking-[0.22em] font-semibold mb-4 ${
-          isFilled ? "text-siq-light" : "text-bronze-light"
-        }`}
-      >
+      <div className="font-mono text-[13px] uppercase tracking-[0.22em] font-semibold mb-4 text-siq-light">
         {kicker}
       </div>
       <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05] text-paper">
@@ -111,9 +107,7 @@ function ModeCard({
         {bullets.map((b, i) => (
           <li key={i} className="flex items-start gap-3">
             <svg
-              className={`mt-1 flex-shrink-0 ${
-                isFilled ? "text-siq-light" : "text-bronze-light"
-              }`}
+              className="mt-1 flex-shrink-0 text-siq-light"
               width="16"
               height="16"
               viewBox="0 0 24 24"
@@ -144,7 +138,7 @@ function ModeCard({
             "inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98]",
             isFilled
               ? "bg-siq hover:bg-siq-dark text-paper"
-              : "bg-bronze hover:bg-bronze-dark text-paper",
+              : "bg-paper hover:bg-white text-ink-900",
           ].join(" ")}
         >
           {cta.label}
