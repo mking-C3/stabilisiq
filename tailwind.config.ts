@@ -8,11 +8,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Decisive accent: warm industrial orange. Picked once, used everywhere.
+        // ─── SHARED ────────────────────────────────────────────────────
+        // Off-white page background — more confident than pure white,
+        // pairs well with the dark hero blocks on the main site.
+        paper: "#F7F5F1",
+        // ─── HVAC ACCENT (existing, do not change) ─────────────────────
+        // Warm industrial orange. Used across hvac.stabilisiq.com.
         accent: {
           DEFAULT: "#F25C1F",
           dark: "#C8410C",
           light: "#FF7A3D",
+        },
+        // ─── STABILISIQ MAIN-SITE ACCENT ───────────────────────────────
+        // Deep operator blue. Confident, industrial, B2B-credible.
+        // Replaces Lovable's pastel teal/mint.
+        siq: {
+          DEFAULT: "#1F4DBA",
+          dark: "#163B92",
+          light: "#3D6CD9",
+          tint: "#E8EDF9",
         },
         ink: {
           DEFAULT: "#0B0D10",
