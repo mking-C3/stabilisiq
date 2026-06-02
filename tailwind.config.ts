@@ -19,14 +19,23 @@ const config: Config = {
           dark: "#C8410C",
           light: "#FF7A3D",
         },
-        // ─── STABILISIQ MAIN-SITE ACCENT ───────────────────────────────
-        // Deep operator blue. Confident, industrial, B2B-credible.
-        // Replaces Lovable's pastel teal/mint.
+        // ─── STABILISIQ MAIN-SITE ACCENTS ──────────────────────────────
+        // Cool operator blue: primary action color (buttons, "Live" badges,
+        // dot bullets on dots that demand attention).
         siq: {
           DEFAULT: "#1F4DBA",
           dark: "#163B92",
           light: "#3D6CD9",
           tint: "#E8EDF9",
+        },
+        // Warm dark bronze: secondary accent for editorial detail —
+        // section kickers, italic emphasis, the IQ wordmark, the playbook
+        // badge, and any place we want warmth against the cool blue.
+        bronze: {
+          DEFAULT: "#B5882D",   // primary bronze, readable on dark
+          dark: "#8C6822",       // deeper for hover/press
+          light: "#D2A547",      // gleam, for highlights and italics
+          glow: "#E8BF6A",       // brightest, for small decorative marks
         },
         ink: {
           DEFAULT: "#0B0D10",

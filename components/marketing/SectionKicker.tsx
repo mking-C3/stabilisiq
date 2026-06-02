@@ -1,5 +1,6 @@
 // Section header kicker: "§ 01 — Section Name" with hairline rule.
-// Reads as editorial/technical, not generic uppercase label.
+// Bronze section number + label, hairline in muted bronze.
+// Reads as editorial/technical — not generic uppercase label.
 
 export default function SectionKicker({
   n,
@@ -13,18 +14,14 @@ export default function SectionKicker({
   const isDark = variant === "dark";
   return (
     <div className="flex items-center gap-3">
-      <span
-        className={`font-mono text-[10px] uppercase tracking-[0.22em] tabular-nums ${
-          isDark ? "text-siq-light" : "text-siq"
-        }`}
-      >
+      <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums font-semibold text-bronze-light">
         § {n}
       </span>
       <span
-        className={`h-px w-8 ${isDark ? "bg-paper/20" : "bg-ink-900/15"}`}
+        className={`h-px w-10 ${isDark ? "bg-bronze/40" : "bg-bronze-dark/30"}`}
       />
       <span
-        className={`font-mono text-[10px] uppercase tracking-[0.22em] font-semibold ${
+        className={`font-mono text-[12px] uppercase tracking-[0.2em] font-semibold ${
           isDark ? "text-ink-200" : "text-ink-700"
         }`}
       >

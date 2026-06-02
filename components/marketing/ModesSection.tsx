@@ -8,9 +8,9 @@ export default function ModesSection({ calendlyUrl }: { calendlyUrl: string }) {
           <SectionKicker n="02" label="How we work" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
             Two modes.{" "}
-            <span className="italic font-medium text-ink-400">Same operators.</span>
+            <span className="italic font-medium text-bronze-light">Same operators.</span>
           </h2>
-          <p className="mt-6 text-ink-300 text-[18px] leading-[1.55]">
+          <p className="mt-6 text-ink-200 text-[19px] leading-[1.55]">
             Start with whichever fits the problem in front of you. Most clients use both
             over time — managed first to surface what&apos;s actually breaking, then a build
             to prevent the next round.
@@ -86,20 +86,24 @@ function ModeCard({
       className={[
         "relative rounded-lg p-8 md:p-10 flex flex-col bg-ink-800 ring-1 transition",
         isFilled
-          ? "ring-siq/40 shadow-[inset_0_1px_0_0_rgba(61,108,217,0.15)]"
-          : "ring-paper/10",
+          ? "ring-siq/45 shadow-[inset_0_1px_0_0_rgba(61,108,217,0.18)]"
+          : "ring-bronze/30 shadow-[inset_0_1px_0_0_rgba(210,165,71,0.12)]",
       ].join(" ")}
     >
-      <div className="font-mono text-[10px] uppercase tracking-[0.22em] font-semibold mb-4 text-siq-light">
+      <div
+        className={`font-mono text-[13px] uppercase tracking-[0.22em] font-semibold mb-4 ${
+          isFilled ? "text-siq-light" : "text-bronze-light"
+        }`}
+      >
         {kicker}
       </div>
       <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05] text-paper">
         {title}
       </h3>
-      <p className="mt-2 text-base md:text-lg font-medium text-paper">
+      <p className="mt-2 text-[17px] md:text-lg font-medium text-paper">
         {tagline}
       </p>
-      <p className="mt-4 leading-relaxed text-ink-300">
+      <p className="mt-4 text-[16px] leading-relaxed text-ink-200">
         {description}
       </p>
 
@@ -107,7 +111,9 @@ function ModeCard({
         {bullets.map((b, i) => (
           <li key={i} className="flex items-start gap-3">
             <svg
-              className="mt-1 flex-shrink-0 text-siq-light"
+              className={`mt-1 flex-shrink-0 ${
+                isFilled ? "text-siq-light" : "text-bronze-light"
+              }`}
               width="16"
               height="16"
               viewBox="0 0 24 24"
@@ -119,7 +125,7 @@ function ModeCard({
             >
               <path d="M20 6L9 17l-5-5" />
             </svg>
-            <span className="text-[15px] leading-snug text-ink-200">
+            <span className="text-[16px] leading-snug text-ink-200">
               {b}
             </span>
           </li>
@@ -127,7 +133,7 @@ function ModeCard({
       </ul>
 
       <div className="mt-7 pt-5 border-t border-paper/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] font-semibold text-ink-400">
+        <span className="font-mono text-[12px] uppercase tracking-[0.15em] font-semibold text-ink-300">
           {terms}
         </span>
         <a
@@ -138,7 +144,7 @@ function ModeCard({
             "inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98]",
             isFilled
               ? "bg-siq hover:bg-siq-dark text-paper"
-              : "bg-paper hover:bg-white text-ink-900",
+              : "bg-bronze hover:bg-bronze-dark text-paper",
           ].join(" ")}
         >
           {cta.label}

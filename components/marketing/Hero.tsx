@@ -16,11 +16,11 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
       <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-32 md:pb-36">
         {/* Kicker with section index — small typographic detail */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-siq-light">
+          <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums font-semibold text-bronze-light">
             § 00
           </span>
-          <span className="h-px w-8 bg-paper/20" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-300">
+          <span className="h-px w-10 bg-bronze/40" />
+          <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-ink-200">
             StabilisIQ · operations partner
           </span>
         </div>
@@ -28,7 +28,7 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
         <h1 className="font-display text-[46px] leading-[1.02] md:text-[88px] md:leading-[0.98] font-bold tracking-tightest max-w-5xl">
           Fix what&apos;s broken.
           <br />
-          <span className="text-siq-light italic font-medium">
+          <span className="text-bronze-light italic font-medium">
             Automate what shouldn&apos;t break again.
           </span>
         </h1>
@@ -77,11 +77,11 @@ function Stat({ n, label, body }: { n: string; label: string; body: string }) {
         <span className="font-mono text-3xl md:text-4xl font-medium text-paper tabular-nums tracking-tight">
           {n}
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-siq-light">
+        <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-bronze-light">
           {label}
         </span>
       </div>
-      <div className="mt-3 text-[15px] text-ink-300 leading-relaxed">{body}</div>
+      <div className="mt-3 text-[16px] text-ink-200 leading-relaxed">{body}</div>
     </div>
   );
 }

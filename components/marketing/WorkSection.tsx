@@ -63,9 +63,9 @@ export default function WorkSection() {
           <SectionKicker n="01" label="The Work" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
             We&apos;ll show.{" "}
-            <span className="italic font-medium text-ink-400">Not tell.</span>
+            <span className="italic font-medium text-bronze-light">Not tell.</span>
           </h2>
-          <p className="mt-6 text-ink-300 text-[18px] leading-[1.55]">
+          <p className="mt-6 text-ink-200 text-[19px] leading-[1.55]">
             Three things we&apos;ve built: a live product you can click into, a tool
             running in production, and a written playbook detailed enough to argue
             with. If one looks like your problem, it probably is.
@@ -92,10 +92,10 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
         featured ? "md:col-span-2" : "",
       ].join(" ")}
     >
-      <div className="flex items-center justify-between gap-3 mb-6">
+      <div className="flex items-center justify-between gap-3 mb-7">
         <div className="flex items-center gap-3">
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-siq-light" />
-          <span className="font-mono text-[14px] md:text-[15px] uppercase tracking-[0.14em] font-medium text-siq-light">
+          <span className="inline-block w-2 h-2 rounded-full bg-bronze" />
+          <span className="font-mono text-[15px] md:text-[16px] uppercase tracking-[0.14em] font-semibold text-bronze-light">
             {w.tag}
           </span>
         </div>
@@ -106,7 +106,7 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
         {w.title}
       </h3>
 
-      <div className="mt-6 space-y-4 text-[16px] text-ink-200 leading-relaxed">
+      <div className="mt-6 space-y-4 text-[17px] text-ink-200 leading-[1.6]">
         <p>
           <Label>Problem.</Label> {w.problem}
         </p>
@@ -147,11 +147,11 @@ function StatusBadge({ status }: { status: Work["status"] }) {
   const map = {
     live: { label: "Live demo", cls: "bg-siq text-paper" },
     product: { label: "Product", cls: "bg-paper text-ink-900" },
-    playbook: { label: "Playbook", cls: "bg-paper/10 text-ink-200 ring-1 ring-paper/15" },
+    playbook: { label: "Playbook", cls: "bg-bronze/15 text-bronze-light ring-1 ring-bronze/40" },
   } as const;
   const { label, cls } = map[status];
   return (
-    <span className={`font-mono text-[10px] uppercase tracking-[0.15em] font-bold px-2.5 py-1 rounded ${cls}`}>
+    <span className={`font-mono text-[12px] uppercase tracking-[0.14em] font-bold px-2.5 py-1 rounded ${cls}`}>
       {label}
     </span>
   );

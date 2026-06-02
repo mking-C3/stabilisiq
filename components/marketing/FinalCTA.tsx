@@ -17,9 +17,9 @@ export default function FinalCTA({ calendlyUrl }: { calendlyUrl: string }) {
           <SectionKicker n="05" label="Talk to us" variant="dark" />
         </div>
         <h2 className="font-display text-center text-3xl md:text-[56px] font-bold tracking-tightest leading-[1.02]">
-          <span className="font-mono text-[40px] md:text-[56px] font-medium tabular-nums">15</span>{" "}
+          <span className="font-mono text-[40px] md:text-[56px] font-medium tabular-nums text-bronze-light">15</span>{" "}
           minutes.{" "}
-          <span className="italic font-medium text-ink-300">No pitch deck.</span>
+          <span className="italic font-medium text-bronze-light">No pitch deck.</span>
         </h2>
         <p className="mt-7 text-center text-lg md:text-[20px] text-ink-200 max-w-2xl mx-auto leading-[1.55]">
           Tell us what&apos;s leaking. We&apos;ll tell you whether we&apos;re the
@@ -41,9 +41,9 @@ export default function FinalCTA({ calendlyUrl }: { calendlyUrl: string }) {
             </span>
           </a>
         </div>
-        <p className="mt-8 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-ink-500">
+        <p className="mt-8 text-center font-mono text-[13px] uppercase tracking-[0.2em] text-ink-300">
           Or skim{" "}
-          <a href="#work" className="underline underline-offset-4 hover:text-paper transition">
+          <a href="#work" className="text-bronze-light underline underline-offset-4 decoration-bronze/50 hover:decoration-bronze-light transition">
             the work
           </a>{" "}
           first

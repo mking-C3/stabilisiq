@@ -10,13 +10,13 @@ export default function WhoSection() {
         <SectionKicker n="04" label="Who this is for" variant="dark" />
         <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
           Operators who&apos;d rather{" "}
-          <span className="italic font-medium text-ink-400">get it done</span>{" "}
+          <span className="italic font-medium text-bronze-light">get it done</span>{" "}
           than buy more software.
         </h2>
-        <div className="mt-8 space-y-5 text-[19px] text-ink-200 leading-[1.55]">
+        <div className="mt-8 space-y-5 text-[20px] text-ink-200 leading-[1.6]">
           <p>
             If you&apos;re running operations at a{" "}
-            <span className="font-mono text-[17px] text-paper tabular-nums">$10M–$500M</span>{" "}
+            <span className="font-mono text-[18px] text-bronze-light tabular-nums">$10M–$500M</span>{" "}
             company and you already know what&apos;s broken — you don&apos;t need
             a consultant to find it for you. You need someone who&apos;ll fix it,
             build around it, and stay accountable for the result.
@@ -29,8 +29,8 @@ export default function WhoSection() {
           </p>
         </div>
 
-        <div className="mt-10 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-ink-800 border border-paper/10 text-[14px] text-ink-200">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-siq-light">
+        <div className="mt-10 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-ink-800 border border-bronze/30 text-[15px] text-ink-200">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-bronze-light">
             <path d="M9 12l2 2 4-4" />
             <circle cx="12" cy="12" r="10" />
           </svg>
