@@ -102,11 +102,17 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
         {w.title}
       </h3>
 
-      <dl className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7">
-        <Field label="Problem" value={w.problem} />
-        <Field label="What we did" value={w.what} />
-        <Field label="Result" value={w.result} />
-      </dl>
+      <div className="mt-6 space-y-4 text-[16px] text-ink-700 leading-relaxed">
+        <p>
+          <Label>Problem.</Label> {w.problem}
+        </p>
+        <p>
+          <Label>What we built.</Label> {w.what}
+        </p>
+        <p>
+          <Label>Result.</Label> {w.result}
+        </p>
+      </div>
 
       {w.live && w.cta && (
         <div className="mt-7">
@@ -127,14 +133,9 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
   );
 }
 
-function Field({ label, value }: { label: string; value: string }) {
+function Label({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <dt className="text-[11px] uppercase tracking-[0.15em] text-ink-400 font-semibold mb-1.5">
-        {label}
-      </dt>
-      <dd className="text-[15px] text-ink-700 leading-relaxed">{value}</dd>
-    </div>
+    <span className="font-semibold text-ink-900">{children}</span>
   );
 }
 
