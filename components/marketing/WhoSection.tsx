@@ -29,7 +29,7 @@ export default function WhoSection() {
           </p>
         </div>
 
-        <div className="mt-10 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-ink-800 border border-paper/10 text-[15px] text-ink-200">
+        <div className="mt-10 inline-flex items-center gap-3 px-5 py-3 rounded-full bg-ink-800 border border-paper/10 text-[17px] text-ink-200">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-siq-light">
             <path d="M9 12l2 2 4-4" />
             <circle cx="12" cy="12" r="10" />

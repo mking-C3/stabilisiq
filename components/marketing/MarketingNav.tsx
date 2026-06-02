@@ -17,7 +17,7 @@ export default function MarketingNav({ calendlyUrl }: { calendlyUrl: string }) {
           </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8 font-mono text-[13px] uppercase tracking-[0.18em] text-ink-200">
+        <nav className="hidden md:flex items-center gap-8 font-mono text-[15px] uppercase tracking-[0.18em] text-ink-200">
           <a href="/#work" className="hover:text-paper transition">Work</a>
           <a href="/#modes" className="hover:text-paper transition">Modes</a>
           <a href="/#loop" className="hover:text-paper transition">Loop</a>
@@ -28,7 +28,7 @@ export default function MarketingNav({ calendlyUrl }: { calendlyUrl: string }) {
           href={calendlyUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-2 rounded-full bg-paper text-ink-900 pl-4 pr-2 py-1.5 text-[14px] font-medium hover:bg-white transition active:scale-[0.98]"
+          className="group inline-flex items-center gap-2 rounded-full bg-paper text-ink-900 pl-5 pr-2 py-2 text-[15px] font-medium hover:bg-white transition active:scale-[0.98]"
         >
           Book a fit check
           <span className="inline-flex w-6 h-6 rounded-full bg-ink-900 text-paper items-center justify-center transition-transform group-hover:translate-x-0.5">

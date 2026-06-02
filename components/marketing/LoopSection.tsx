@@ -63,14 +63,14 @@ export default function LoopSection() {
             >
               <div className="flex items-center gap-2.5 mb-4 relative z-10">
                 <span className="inline-block w-3 h-3 rounded-full bg-siq-light ring-2 ring-ink-900" />
-                <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums text-siq-light font-semibold">
+                <span className="font-mono text-[15px] uppercase tracking-[0.18em] tabular-nums text-siq-light font-semibold">
                   Step {s.n}
                 </span>
               </div>
               <h3 className="font-display text-[22px] font-semibold tracking-tight mb-2 text-paper">
                 {s.title}
               </h3>
-              <p className="text-[15px] text-ink-200 leading-relaxed">{s.body}</p>
+              <p className="text-[16px] text-ink-200 leading-relaxed">{s.body}</p>
             </li>
           ))}
         </ol>

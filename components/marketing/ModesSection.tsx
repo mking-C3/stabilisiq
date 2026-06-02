@@ -90,16 +90,16 @@ function ModeCard({
           : "ring-paper/10",
       ].join(" ")}
     >
-      <div className="font-mono text-[13px] uppercase tracking-[0.22em] font-semibold mb-4 text-siq-light">
+      <div className="font-mono text-[15px] uppercase tracking-[0.22em] font-semibold mb-4 text-siq-light">
         {kicker}
       </div>
       <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05] text-paper">
         {title}
       </h3>
-      <p className="mt-2 text-[17px] md:text-lg font-medium text-paper">
+      <p className="mt-2 text-[18px] md:text-[20px] font-medium text-paper">
         {tagline}
       </p>
-      <p className="mt-4 text-[16px] leading-relaxed text-ink-200">
+      <p className="mt-4 text-[17px] leading-relaxed text-ink-200">
         {description}
       </p>
 
@@ -119,7 +119,7 @@ function ModeCard({
             >
               <path d="M20 6L9 17l-5-5" />
             </svg>
-            <span className="text-[16px] leading-snug text-ink-200">
+            <span className="text-[17px] leading-snug text-ink-200">
               {b}
             </span>
           </li>
@@ -127,7 +127,7 @@ function ModeCard({
       </ul>
 
       <div className="mt-7 pt-5 border-t border-paper/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <span className="font-mono text-[12px] uppercase tracking-[0.15em] font-semibold text-ink-300">
+        <span className="font-mono text-[14px] uppercase tracking-[0.15em] font-semibold text-ink-300">
           {terms}
         </span>
         <a
@@ -135,7 +135,7 @@ function ModeCard({
           target={cta.external ? "_blank" : undefined}
           rel={cta.external ? "noopener noreferrer" : undefined}
           className={[
-            "inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98]",
+            "inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-[16px] font-semibold transition active:scale-[0.98]",
             isFilled
               ? "bg-siq hover:bg-siq-dark text-paper"
               : "bg-paper hover:bg-white text-ink-900",

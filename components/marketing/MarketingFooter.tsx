@@ -12,7 +12,7 @@ export default function MarketingFooter() {
               Stabilis<span className="font-mono text-siq-light">IQ</span>
             </span>
           </div>
-          <div className="flex flex-wrap gap-x-7 gap-y-2 font-mono text-[13px] uppercase tracking-[0.18em] text-ink-300">
+          <div className="flex flex-wrap gap-x-7 gap-y-2 font-mono text-[15px] uppercase tracking-[0.18em] text-ink-300">
             <a href="/#work" className="hover:text-paper transition">Work</a>
             <a href="/#modes" className="hover:text-paper transition">Modes</a>
             <a href="/#loop" className="hover:text-paper transition">Loop</a>
@@ -27,7 +27,7 @@ export default function MarketingFooter() {
             </a>
           </div>
         </div>
-        <div className="mt-10 pt-6 border-t border-paper/5 font-mono text-[12px] uppercase tracking-[0.15em] text-ink-400 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+        <div className="mt-10 pt-6 border-t border-paper/5 font-mono text-[14px] uppercase tracking-[0.15em] text-ink-400 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
           <span>© {new Date().getFullYear()} StabilisIQ · All rights reserved</span>
           <span className="text-ink-500 tabular-nums">stabilisiq.com</span>
         </div>

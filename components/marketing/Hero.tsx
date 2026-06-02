@@ -16,11 +16,11 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
       <div className="relative mx-auto max-w-6xl px-5 pt-20 pb-24 md:pt-32 md:pb-36">
         {/* Kicker with section index — small typographic detail */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums font-semibold text-siq-light">
+          <span className="font-mono text-[15px] uppercase tracking-[0.18em] tabular-nums font-semibold text-siq-light">
             § 00
           </span>
           <span className="h-px w-10 bg-paper/20" />
-          <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-ink-200">
+          <span className="font-mono text-[14px] uppercase tracking-[0.2em] font-semibold text-ink-200">
             StabilisIQ · operations partner
           </span>
         </div>
@@ -44,7 +44,7 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
             href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper hover:bg-white transition-colors px-7 py-4 text-[15px] font-semibold text-ink-900 active:scale-[0.98]"
+            className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper hover:bg-white transition-colors px-7 py-4 text-[16px] font-semibold text-ink-900 active:scale-[0.98]"
           >
             Book a 15-min fit check
             <svg className="transition-transform group-hover:translate-x-0.5" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -53,7 +53,7 @@ export default function Hero({ calendlyUrl }: { calendlyUrl: string }) {
           </a>
           <a
             href="#work"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-paper/15 hover:border-paper/35 hover:bg-paper/5 transition-colors px-7 py-4 text-[15px] font-semibold text-paper"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-paper/15 hover:border-paper/35 hover:bg-paper/5 transition-colors px-7 py-4 text-[16px] font-semibold text-paper"
           >
             See the work
           </a>
@@ -77,11 +77,11 @@ function Stat({ n, label, body }: { n: string; label: string; body: string }) {
         <span className="font-mono text-3xl md:text-4xl font-medium text-paper tabular-nums tracking-tight">
           {n}
         </span>
-        <span className="font-mono text-[12px] uppercase tracking-[0.2em] font-semibold text-siq-light">
+        <span className="font-mono text-[14px] uppercase tracking-[0.2em] font-semibold text-siq-light">
           {label}
         </span>
       </div>
-      <div className="mt-3 text-[16px] text-ink-200 leading-relaxed">{body}</div>
+      <div className="mt-3 text-[17px] text-ink-200 leading-relaxed">{body}</div>
     </div>
   );
 }

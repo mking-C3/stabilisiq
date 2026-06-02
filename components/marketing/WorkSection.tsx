@@ -95,7 +95,7 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
       <div className="flex items-center justify-between gap-3 mb-7">
         <div className="flex items-center gap-3">
           <span className="inline-block w-2 h-2 rounded-full bg-siq-light" />
-          <span className="font-mono text-[15px] md:text-[16px] uppercase tracking-[0.14em] font-semibold text-siq-light">
+          <span className="font-mono text-[17px] md:text-[18px] uppercase tracking-[0.14em] font-semibold text-siq-light">
             {w.tag}
           </span>
         </div>
@@ -106,7 +106,7 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
         {w.title}
       </h3>
 
-      <div className="mt-6 space-y-4 text-[17px] text-ink-200 leading-[1.6]">
+      <div className="mt-6 space-y-4 text-[18px] text-ink-200 leading-[1.6]">
         <p>
           <Label>Problem.</Label> {w.problem}
         </p>
@@ -124,7 +124,7 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
             href={w.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-siq hover:text-siq-dark transition"
+            className="inline-flex items-center gap-2 text-[16px] font-semibold text-siq-light hover:text-paper transition"
           >
             {w.cta}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -151,7 +151,7 @@ function StatusBadge({ status }: { status: Work["status"] }) {
   } as const;
   const { label, cls } = map[status];
   return (
-    <span className={`font-mono text-[12px] uppercase tracking-[0.14em] font-bold px-2.5 py-1 rounded ${cls}`}>
+    <span className={`font-mono text-[14px] uppercase tracking-[0.14em] font-bold px-3 py-1 rounded ${cls}`}>
       {label}
     </span>
   );

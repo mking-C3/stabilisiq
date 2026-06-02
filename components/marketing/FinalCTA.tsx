@@ -31,7 +31,7 @@ export default function FinalCTA({ calendlyUrl }: { calendlyUrl: string }) {
             href={calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2.5 rounded-full bg-paper hover:bg-white transition-colors pl-8 pr-3 py-3 text-[15px] font-semibold text-ink-900 active:scale-[0.98]"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-paper hover:bg-white transition-colors pl-8 pr-3 py-3 text-[16px] font-semibold text-ink-900 active:scale-[0.98]"
           >
             Book a 15-min fit check
             <span className="inline-flex w-8 h-8 rounded-full bg-ink-900 text-paper items-center justify-center transition-transform group-hover:translate-x-0.5">
@@ -41,7 +41,7 @@ export default function FinalCTA({ calendlyUrl }: { calendlyUrl: string }) {
             </span>
           </a>
         </div>
-        <p className="mt-8 text-center font-mono text-[13px] uppercase tracking-[0.2em] text-ink-300">
+        <p className="mt-8 text-center font-mono text-[15px] uppercase tracking-[0.2em] text-ink-300">
           Or skim{" "}
           <a href="#work" className="text-paper underline underline-offset-4 decoration-paper/40 hover:decoration-paper transition">
             the work

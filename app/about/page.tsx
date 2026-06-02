@@ -64,7 +64,7 @@ export default function AboutPage() {
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/30 to-transparent pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-bronze/30" />
               </div>
-              <p className="mt-4 text-center md:text-right font-mono text-[12px] uppercase tracking-[0.18em] text-ink-400">
+              <p className="mt-4 text-center md:text-right font-mono text-[14px] uppercase tracking-[0.18em] text-ink-400">
                 Matt · Founder, StabilisIQ
               </p>
             </div>
@@ -226,7 +226,7 @@ export default function AboutPage() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper hover:bg-white transition-colors pl-7 pr-3 py-3 text-[15px] font-semibold text-ink-900 active:scale-[0.98]"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-paper hover:bg-white transition-colors pl-7 pr-3 py-3 text-[16px] font-semibold text-ink-900 active:scale-[0.98]"
             >
               Book a 15-min fit check
               <span className="inline-flex w-8 h-8 rounded-full bg-ink-900 text-paper items-center justify-center transition-transform group-hover:translate-x-0.5">
@@ -237,7 +237,7 @@ export default function AboutPage() {
             </a>
             <a
               href={`mailto:${EMAIL}`}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-paper/15 hover:border-paper/35 hover:bg-paper/5 transition-colors px-7 py-3 text-[15px] font-semibold text-paper font-mono tracking-tight"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-paper/15 hover:border-paper/35 hover:bg-paper/5 transition-colors px-7 py-3 text-[16px] font-semibold text-paper font-mono tracking-tight"
             >
               {EMAIL}
             </a>
@@ -261,7 +261,7 @@ function Principle({
 }) {
   return (
     <li className="grid grid-cols-[auto_1fr] gap-5 md:gap-7">
-      <span className="font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums text-siq-light font-semibold pt-1.5">
+      <span className="font-mono text-[15px] uppercase tracking-[0.18em] tabular-nums text-siq-light font-semibold pt-1.5">
         {n}
       </span>
       <div>

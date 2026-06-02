@@ -13,7 +13,7 @@ export default function SectionKicker({
   return (
     <div className="flex items-center gap-3">
       <span
-        className={`font-mono text-[13px] uppercase tracking-[0.18em] tabular-nums font-semibold ${
+        className={`font-mono text-[15px] uppercase tracking-[0.18em] tabular-nums font-semibold ${
           isDark ? "text-siq-light" : "text-siq"
         }`}
       >
@@ -23,7 +23,7 @@ export default function SectionKicker({
         className={`h-px w-10 ${isDark ? "bg-paper/20" : "bg-ink-900/15"}`}
       />
       <span
-        className={`font-mono text-[12px] uppercase tracking-[0.2em] font-semibold ${
+        className={`font-mono text-[14px] uppercase tracking-[0.2em] font-semibold ${
           isDark ? "text-ink-200" : "text-ink-700"
         }`}
       >
