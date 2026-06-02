@@ -13,7 +13,7 @@ const CALENDLY_URL = "https://calendly.com/matt-stabilisiq/30min";
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-paper text-ink-900">
+    <main className="min-h-screen bg-ink-900 text-paper">
       <MarketingNav calendlyUrl={CALENDLY_URL} />
       <Hero calendlyUrl={CALENDLY_URL} />
       <WorkSection />

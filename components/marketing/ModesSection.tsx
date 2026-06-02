@@ -2,15 +2,15 @@ import SectionKicker from "./SectionKicker";
 
 export default function ModesSection({ calendlyUrl }: { calendlyUrl: string }) {
   return (
-    <section id="modes" className="bg-white py-24 md:py-32 border-t border-ink-900/8">
+    <section id="modes" className="bg-ink-900 text-paper py-24 md:py-32 border-t border-paper/5">
       <div className="mx-auto max-w-6xl px-5">
         <div className="max-w-3xl">
-          <SectionKicker n="02" label="How we work" />
+          <SectionKicker n="02" label="How we work" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
             Two modes.{" "}
-            <span className="italic font-medium text-ink-500">Same operators.</span>
+            <span className="italic font-medium text-ink-400">Same operators.</span>
           </h2>
-          <p className="mt-6 text-ink-500 text-[18px] leading-[1.55]">
+          <p className="mt-6 text-ink-300 text-[18px] leading-[1.55]">
             Start with whichever fits the problem in front of you. Most clients use both
             over time — managed first to surface what&apos;s actually breaking, then a build
             to prevent the next round.
@@ -78,38 +78,28 @@ function ModeCard({
   cta: { label: string; href: string; external?: boolean };
   accent: "dark" | "light";
 }) {
-  const isDark = accent === "dark";
+  // accent now toggles between a "filled" (siq-blue-tinted) card and a
+  // "outlined" (neutral dark) card — both work on the dark page bg.
+  const isFilled = accent === "dark";
   return (
     <div
       className={[
-        "relative rounded-lg p-8 md:p-10 flex flex-col",
-        isDark
-          ? "bg-ink-900 text-paper"
-          : "bg-siq-tint text-ink-900 ring-1 ring-siq/15",
+        "relative rounded-lg p-8 md:p-10 flex flex-col bg-ink-800 ring-1 transition",
+        isFilled
+          ? "ring-siq/40 shadow-[inset_0_1px_0_0_rgba(61,108,217,0.15)]"
+          : "ring-paper/10",
       ].join(" ")}
     >
-      <div
-        className={`font-mono text-[10px] uppercase tracking-[0.22em] font-semibold mb-4 ${
-          isDark ? "text-siq-light" : "text-siq"
-        }`}
-      >
+      <div className="font-mono text-[10px] uppercase tracking-[0.22em] font-semibold mb-4 text-siq-light">
         {kicker}
       </div>
-      <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05]">
+      <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05] text-paper">
         {title}
       </h3>
-      <p
-        className={`mt-2 text-base md:text-lg font-medium ${
-          isDark ? "text-paper" : "text-ink-900"
-        }`}
-      >
+      <p className="mt-2 text-base md:text-lg font-medium text-paper">
         {tagline}
       </p>
-      <p
-        className={`mt-4 leading-relaxed ${
-          isDark ? "text-ink-300" : "text-ink-600"
-        }`}
-      >
+      <p className="mt-4 leading-relaxed text-ink-300">
         {description}
       </p>
 
@@ -117,9 +107,7 @@ function ModeCard({
         {bullets.map((b, i) => (
           <li key={i} className="flex items-start gap-3">
             <svg
-              className={`mt-1 flex-shrink-0 ${
-                isDark ? "text-siq-light" : "text-siq"
-              }`}
+              className="mt-1 flex-shrink-0 text-siq-light"
               width="16"
               height="16"
               viewBox="0 0 24 24"
@@ -131,27 +119,15 @@ function ModeCard({
             >
               <path d="M20 6L9 17l-5-5" />
             </svg>
-            <span
-              className={`text-[15px] leading-snug ${
-                isDark ? "text-ink-200" : "text-ink-700"
-              }`}
-            >
+            <span className="text-[15px] leading-snug text-ink-200">
               {b}
             </span>
           </li>
         ))}
       </ul>
 
-      <div
-        className={`mt-7 pt-5 border-t flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 ${
-          isDark ? "border-paper/10" : "border-siq/15"
-        }`}
-      >
-        <span
-          className={`text-xs uppercase tracking-[0.15em] font-semibold ${
-            isDark ? "text-ink-400" : "text-ink-500"
-          }`}
-        >
+      <div className="mt-7 pt-5 border-t border-paper/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <span className="font-mono text-[10px] uppercase tracking-[0.15em] font-semibold text-ink-400">
           {terms}
         </span>
         <a
@@ -160,9 +136,9 @@ function ModeCard({
           rel={cta.external ? "noopener noreferrer" : undefined}
           className={[
             "inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition active:scale-[0.98]",
-            isDark
+            isFilled
               ? "bg-siq hover:bg-siq-dark text-paper"
-              : "bg-ink-900 hover:bg-ink-700 text-paper",
+              : "bg-paper hover:bg-white text-ink-900",
           ].join(" ")}
         >
           {cta.label}

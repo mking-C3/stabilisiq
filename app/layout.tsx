@@ -45,7 +45,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${jetbrains.variable} antialiased`}
     >
-      <body className="font-sans bg-white text-ink-900">{children}</body>
+      <body className="font-sans bg-ink-900 text-paper">{children}</body>
     </html>
   );
 }

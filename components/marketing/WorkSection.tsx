@@ -56,16 +56,16 @@ const WORK: Work[] = [
 
 export default function WorkSection() {
   return (
-    <section id="work" className="bg-paper py-24 md:py-32 border-t border-ink-900/8">
+    <section id="work" className="bg-ink-800 text-paper py-24 md:py-32 border-t border-paper/5">
       <div className="mx-auto max-w-6xl px-5">
         {/* Section header */}
         <div className="max-w-3xl">
-          <SectionKicker n="01" label="The Work" />
+          <SectionKicker n="01" label="The Work" variant="dark" />
           <h2 className="mt-6 font-display text-3xl md:text-[52px] font-bold tracking-tightest leading-[1.02]">
             We&apos;ll show.{" "}
-            <span className="italic font-medium text-ink-500">Not tell.</span>
+            <span className="italic font-medium text-ink-400">Not tell.</span>
           </h2>
-          <p className="mt-6 text-ink-500 text-[18px] leading-[1.55]">
+          <p className="mt-6 text-ink-300 text-[18px] leading-[1.55]">
             Three things we&apos;ve built: a live product you can click into, a tool
             running in production, and a written playbook detailed enough to argue
             with. If one looks like your problem, it probably is.
@@ -87,23 +87,26 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
   return (
     <article
       className={[
-        "group relative rounded-lg border bg-white p-7 md:p-10 transition",
-        "border-ink-900/10 hover:border-ink-900/25 hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.08)]",
+        "group relative rounded-lg border bg-ink-900 p-7 md:p-10 transition",
+        "border-paper/8 hover:border-paper/20 hover:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.5)]",
         featured ? "md:col-span-2" : "",
       ].join(" ")}
     >
-      <div className="flex items-center justify-between gap-3 mb-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-400">
-          {w.tag}
-        </span>
+      <div className="flex items-center justify-between gap-3 mb-6">
+        <div className="flex items-center gap-3">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-siq-light" />
+          <span className="font-mono text-[14px] md:text-[15px] uppercase tracking-[0.14em] font-medium text-siq-light">
+            {w.tag}
+          </span>
+        </div>
         <StatusBadge status={w.status} />
       </div>
 
-      <h3 className="font-display text-2xl md:text-[34px] font-semibold tracking-tighter leading-[1.05]">
+      <h3 className="font-display text-2xl md:text-[36px] font-semibold tracking-tighter leading-[1.05] text-paper">
         {w.title}
       </h3>
 
-      <div className="mt-6 space-y-4 text-[16px] text-ink-700 leading-relaxed">
+      <div className="mt-6 space-y-4 text-[16px] text-ink-200 leading-relaxed">
         <p>
           <Label>Problem.</Label> {w.problem}
         </p>
@@ -136,19 +139,19 @@ function Card({ w, featured }: { w: Work; featured?: boolean }) {
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <span className="font-semibold text-ink-900">{children}</span>
+    <span className="font-semibold text-paper">{children}</span>
   );
 }
 
 function StatusBadge({ status }: { status: Work["status"] }) {
   const map = {
-    live: { label: "Live demo", cls: "bg-siq-tint text-siq" },
-    product: { label: "Product", cls: "bg-ink-900 text-paper" },
-    playbook: { label: "Playbook", cls: "bg-ink-100 text-ink-700" },
+    live: { label: "Live demo", cls: "bg-siq text-paper" },
+    product: { label: "Product", cls: "bg-paper text-ink-900" },
+    playbook: { label: "Playbook", cls: "bg-paper/10 text-ink-200 ring-1 ring-paper/15" },
   } as const;
   const { label, cls } = map[status];
   return (
-    <span className={`text-[10px] uppercase tracking-[0.15em] font-bold px-2 py-1 rounded ${cls}`}>
+    <span className={`font-mono text-[10px] uppercase tracking-[0.15em] font-bold px-2.5 py-1 rounded ${cls}`}>
       {label}
     </span>
   );
