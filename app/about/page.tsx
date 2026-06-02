@@ -53,9 +53,9 @@ export default function AboutPage() {
                 style={{
                   // Background-image fallback — if the file isn't there yet,
                   // we just see a neutral dark square instead of a broken icon.
-                  // IMAGE: Save your headshot at public/matt-headshot.jpg.
-                  // Recommended: 1000x1000+ square crop, JPG ~200KB.
-                  backgroundImage: "url(/matt-headshot.jpg)",
+                  // IMAGE: Save your headshot at public/matt-headshot.png.
+                  // Recommended: 1000x1000+ square crop.
+                  backgroundImage: "url(/matt-headshot.png)",
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
