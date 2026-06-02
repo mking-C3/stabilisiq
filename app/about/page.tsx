@@ -164,42 +164,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ───── BACKGROUND (TODO — needs Matt's input) ───────────── */}
-      <section className="bg-ink-800 text-paper py-14 md:py-20 border-t border-paper/5">
-        <div className="mx-auto max-w-3xl px-5">
-          <SectionKicker n="09" label="Background" variant="dark" />
-          <h2 className="mt-6 font-display text-3xl md:text-[44px] font-bold tracking-tightest leading-[1.05]">
-            Before StabilisIQ.
-          </h2>
-
-          {/*
-            TODO — Matt: fill this section in with your real bio.
-            Suggested structure (pick what fits, drop the rest):
-
-            - Years running operations (e.g. "Fifteen years running ops across...")
-            - Industries you've worked in deeply
-            - 1-2 specific past roles or company names you're comfortable naming
-            - Any credentials/education ONLY if directly relevant to ops work
-            - One sentence on why you started StabilisIQ
-
-            Keep it 2-3 short paragraphs. Operator-to-operator voice, like the
-            rest of the page. No CV format. No "passionate about" language.
-          */}
-          <div className="mt-10 space-y-5 text-[18px] md:text-[19px] text-ink-200 leading-[1.65]">
-            <p className="text-ink-400 italic">
-              [ Replace this block with your background. Suggested: a few short
-              paragraphs covering — years running operations, industries
-              you&apos;ve worked in deeply, one or two specific past roles you
-              want to name, and one sentence on why you started StabilisIQ. ]
-            </p>
-            <p className="text-ink-400 italic">
-              [ Keep it operator-to-operator. No CV format. No &quot;passionate
-              about&quot; language. ]
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* ───── CTA ──────────────────────────────────────────────── */}
       <section className="relative bg-ink-900 text-paper py-14 md:py-20 border-t border-paper/5 overflow-hidden">
         <div
