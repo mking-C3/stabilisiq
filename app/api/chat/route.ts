@@ -12,6 +12,45 @@ function isVerticalId(v: unknown): v is Vertical["id"] {
   return typeof v === "string" && v in VERTICALS;
 }
 
+type Booking = { window: string; summary: string; emergency: boolean };
+
+// Extracts a "[[BOOKED window=...; summary=...; emergency=true|false]]"
+// marker from the bot reply, returns the clean reply + parsed booking.
+// Non-strict: any missing/malformed field yields booking=null.
+function parseBookingMarker(text: string): {
+  reply: string;
+  booking: Booking | null;
+} {
+  const re = /\[\[BOOKED\s+([^\]]+)\]\]/i;
+  const match = text.match(re);
+  if (!match) return { reply: text, booking: null };
+
+  const raw = match[1].trim();
+  const fields: Record<string, string> = {};
+  raw.split(";").forEach((pair) => {
+    const eq = pair.indexOf("=");
+    if (eq <= 0) return;
+    const key = pair.slice(0, eq).trim().toLowerCase();
+    const val = pair.slice(eq + 1).trim();
+    if (key && val) fields[key] = val;
+  });
+
+  const window = fields.window || "";
+  const summary = fields.summary || "";
+  if (!window && !summary) {
+    return { reply: text.replace(re, "").trim(), booking: null };
+  }
+
+  return {
+    reply: text.replace(re, "").trim(),
+    booking: {
+      window,
+      summary,
+      emergency: /^(true|yes|1)$/i.test(fields.emergency || ""),
+    },
+  };
+}
+
 // Lightweight in-memory per-IP rate limit. Resets on serverless cold start.
 // Not bulletproof, just enough to discourage abuse during a demo.
 const RATE_WINDOW_MS = 60_000;
@@ -107,7 +146,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ reply: text });
+    // Parse the booking marker if the bot emitted one. Format:
+    //   [[BOOKED window=<...>; summary=<...>; emergency=<true|false>]]
+    // Strip it from the visible reply and return structured booking info
+    // alongside so the client can show a confirmation card.
+    const { reply, booking } = parseBookingMarker(text);
+    return NextResponse.json({ reply, booking });
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : "Unknown error";
     console.error("Anthropic API error:", msg);

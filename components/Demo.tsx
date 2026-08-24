@@ -34,6 +34,11 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [booking, setBooking] = useState<{
+    window: string;
+    summary: string;
+    emergency: boolean;
+  } | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -78,7 +83,10 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
         const j = await res.json().catch(() => ({}));
         throw new Error(j?.error || "Failed to reach the demo bot.");
       }
-      const data: { reply: string } = await res.json();
+      const data: {
+        reply: string;
+        booking?: { window: string; summary: string; emergency: boolean } | null;
+      } = await res.json();
 
       const elapsed = Date.now() - start;
       if (elapsed < 700) {
@@ -94,6 +102,7 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
           ts: Date.now(),
         },
       ]);
+      if (data.booking) setBooking(data.booking);
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Something went wrong.";
       setError(msg);
@@ -249,6 +258,51 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
 
       {error && (
         <p className="mt-3 text-center text-sm text-alarm">{error}</p>
+      )}
+
+      {/* Booking confirmation card — appears once the bot confirms an appointment */}
+      {booking && (
+        <div
+          className="mt-6 rounded-2xl border border-emerald-300 bg-emerald-50 p-5 shadow-sm animate-fade-in"
+          role="status"
+          aria-live="polite"
+        >
+          <div className="flex items-center gap-2 text-emerald-900 font-bold text-sm uppercase tracking-wider">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-emerald-700"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            {booking.emergency ? "Dispatched" : "Booking confirmed"}
+          </div>
+
+          <div className="mt-3 font-display text-xl font-bold text-ink-900 tracking-tight">
+            {booking.window || "Confirmed"}
+          </div>
+          {booking.summary && (
+            <div className="mt-1 text-sm text-ink-700">{booking.summary}</div>
+          )}
+
+          {booking.emergency && (
+            <div className="mt-3 inline-block text-[10px] font-bold uppercase tracking-widest bg-alarm text-white px-2 py-1 rounded">
+              Emergency priority
+            </div>
+          )}
+
+          <div className="mt-4 pt-4 border-t border-emerald-200 text-xs text-ink-500 leading-relaxed">
+            In production this drops into the shop&apos;s calendar and pings the
+            owner&apos;s phone. On the demo, it&apos;s just a visual so you can see
+            the flow completed.
+          </div>
+        </div>
       )}
 
       {/* Real text demo line */}

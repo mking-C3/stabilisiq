@@ -1,4 +1,5 @@
 import Demo from "@/components/Demo";
+import PricingTiers from "@/components/PricingTiers";
 import { VERTICALS } from "@/lib/verticals";
 
 // ─── SITE CONSTANTS ──────────────────────────────────────────────────────
@@ -175,6 +176,9 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      {/* PRICING TIERS ─────────────────────────────────────────── */}
+      <PricingTiers calendlyUrl={CALENDLY_URL} />
 
       {/* COMPATIBILITY ────────────────────────────────────────────── */}
       <section className="bg-ink-50 py-12 md:py-16 border-y border-ink-100">
