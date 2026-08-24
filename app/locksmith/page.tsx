@@ -3,7 +3,7 @@ import { VERTICALS } from "@/lib/verticals";
 
 // ─── SITE CONSTANTS ──────────────────────────────────────────────────────
 const CALENDLY_URL = "https://calendly.com/matt-stabilisiq/30min";
-const vertical = VERTICALS.hvac;
+const vertical = VERTICALS.locksmith;
 const TWILIO_DEMO_NUMBER_DISPLAY = vertical.demo.phoneDisplay;
 const TWILIO_DEMO_NUMBER_SMS = vertical.demo.phoneSms;
 // ─────────────────────────────────────────────────────────────────────────
@@ -16,18 +16,19 @@ export default function Page() {
         <div className="mx-auto max-w-6xl px-5 pt-16 pb-20 md:pt-24 md:pb-28">
           <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-ink-300">
             <span className="inline-block w-2 h-2 rounded-full bg-accent" />
-            Missed Call Text Back for HVAC
+            Missed Call Text Back for Locksmiths
           </div>
 
           <h1 className="mt-6 font-display text-[40px] leading-[1.05] md:text-[68px] md:leading-[1.02] font-extrabold tracking-tight">
-            Every missed call is a{" "}
-            <span className="text-accent">$4,000 job</span> walking to your
-            competitor.
+            Every missed lockout call is{" "}
+            <span className="text-accent">a $350 job</span> going to whoever
+            answers first.
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg md:text-xl text-ink-200">
-            We text every missed call back in 5 seconds, qualify the homeowner,
-            and book the job into your calendar — automatically, 24/7.
+            We text every missed call back in 5 seconds, get their location and
+            situation, and either dispatch a locksmith or drop the appointment
+            into your calendar — automatically, 24/7.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -54,19 +55,19 @@ export default function Page() {
             </span>
           </div>
 
-          {/* Pain visual: ringing/unanswered phone */}
+          {/* Pain visual */}
           <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-ink-700 pt-10">
             <PainStat
-              big="27%"
-              label="of inbound HVAC calls go unanswered after hours"
+              big="42%"
+              label="of inbound locksmith calls hit voicemail or ring out"
             />
             <PainStat
               big="5 sec"
               label="auto text-back response time, day or night"
             />
             <PainStat
-              big="3-5x"
-              label="more booked jobs from the same call volume"
+              big="4-6x"
+              label="more dispatched jobs from the same call volume"
             />
           </div>
         </div>
@@ -87,7 +88,8 @@ export default function Page() {
             </h2>
             <p className="mt-4 text-ink-500 md:text-lg">
               This is the exact text-back your customer would get. Type like
-              you&apos;re a homeowner whose AC just died.
+              you&apos;re a homeowner locked out at 11pm, or a driver whose
+              keys are in the trunk.
             </p>
           </div>
 
@@ -127,8 +129,8 @@ export default function Page() {
                   <line x1="2" y1="2" x2="22" y2="22" stroke="#E11D2A" />
                 </svg>
               }
-              title="Call comes in. Nobody answers."
-              body="You're on a roof. In a crawl space. Driving. It happens — and the customer hangs up and dials the next shop."
+              title="Call comes in. You're on a job."
+              body="You're rekeying a house. Cutting a car key. Driving. The caller hangs up and dials the next locksmith on Google."
             />
             <Step
               n="2"
@@ -147,7 +149,7 @@ export default function Page() {
                 </svg>
               }
               title="Text back in 5 seconds."
-              body="A friendly, on-brand message hits their phone before they even put it down. They text back, you keep working."
+              body="A friendly, on-brand message hits their phone before they can dial anyone else. They text back with their situation, you finish what you're doing."
             />
             <Step
               n="3"
@@ -169,8 +171,8 @@ export default function Page() {
                   <path d="M9 16l2 2 4-4" />
                 </svg>
               }
-              title="Qualified and booked."
-              body="It asks the right questions, flags emergencies, and drops the appointment straight into your calendar."
+              title="Dispatched or booked."
+              body="Lockouts get a location + ETA and roll immediately. Rekeys, new locks, and safe work get scheduled straight into your calendar."
             />
           </div>
         </div>
@@ -194,11 +196,11 @@ export default function Page() {
       <section className="bg-ink-900 text-white py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-5 text-center">
           <h2 className="font-display text-3xl md:text-5xl font-extrabold tracking-tight">
-            Stop losing jobs to missed calls.
+            Stop losing lockouts to whoever answered first.
           </h2>
           <p className="mt-5 text-lg text-ink-200">
-            We get you set up in under an hour. Most shops book their first new
-            job from a missed call the same day.
+            We get you set up in under an hour. Most locksmiths take their
+            first booked call the same day.
           </p>
           <div className="mt-9 flex flex-col items-center gap-4">
             <a
@@ -255,7 +257,7 @@ export default function Page() {
               StabilisIQ
             </a>
           </div>
-          <div>© {new Date().getFullYear()} StabilisIQ · hvac.stabilisiq.com</div>
+          <div>© {new Date().getFullYear()} StabilisIQ · locksmith.stabilisiq.com</div>
         </div>
       </footer>
     </main>

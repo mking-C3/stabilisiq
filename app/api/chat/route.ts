@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { VERTICALS, type Vertical } from "@/lib/verticals";
 
 export const runtime = "nodejs";
 
@@ -7,7 +8,9 @@ export const runtime = "nodejs";
 // prefer "claude-sonnet-4-6" (faster + cheaper, still plenty smart for SMS).
 const MODEL = "claude-opus-4-7";
 
-const SYSTEM_PROMPT = `You are the automated text back assistant for Mike's HVAC, a residential heating and cooling company. You triggered this text because the customer just called and nobody could pick up. Your job: respond warmly and fast, figure out what they need, and book them an appointment. Keep every message short, like a real text (one to three sentences max, casual, no corporate tone). Ask one question at a time. If it sounds like an emergency (no heat in winter, no AC in extreme heat, water leaking, gas smell, anything urgent) treat it as priority and offer the soonest slot. Offer two specific appointment windows (make up realistic ones like 'today 2pm to 4pm' or 'tomorrow morning 8am to 10am'). When they pick one, confirm the booking clearly and tell them a tech will call to confirm. Never break character, never mention you are an AI or a demo, never discuss anything off topic. This is a demonstration of a product, so keep the conversation moving toward a booked appointment quickly.`;
+function isVerticalId(v: unknown): v is Vertical["id"] {
+  return typeof v === "string" && v in VERTICALS;
+}
 
 // Lightweight in-memory per-IP rate limit. Resets on serverless cold start.
 // Not bulletproof, just enough to discourage abuse during a demo.
@@ -74,12 +77,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "No valid messages." }, { status: 400 });
   }
 
+  // Pick vertical persona. Defaults to `hvac` for backwards compat with
+  // any older client calls that didn't send the field.
+  const verticalIdRaw = (body as { vertical?: unknown })?.vertical;
+  const verticalId: Vertical["id"] = isVerticalId(verticalIdRaw)
+    ? verticalIdRaw
+    : "hvac";
+  const systemPrompt = VERTICALS[verticalId].systemPrompt;
+
   try {
     const client = new Anthropic({ apiKey });
     const result = await client.messages.create({
       model: MODEL,
       max_tokens: 300,
-      system: SYSTEM_PROMPT,
+      system: systemPrompt,
       messages: messages.map((m) => ({ role: m.role, content: m.content })),
     });
 

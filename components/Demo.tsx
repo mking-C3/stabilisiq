@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-// ─── LIVE DEMO LINE (StabilisIQ toll-free, Twilio) ───────────────────────
-const TWILIO_DEMO_NUMBER_DISPLAY = "(888) 913-2301";
-const TWILIO_DEMO_NUMBER_SMS = "+18889132301";
-// ─────────────────────────────────────────────────────────────────────────
+import type { Vertical } from "@/lib/verticals";
 
 type Msg = {
   id: string;
@@ -13,20 +9,6 @@ type Msg = {
   content: string;
   ts: number;
 };
-
-const OPENER: Msg = {
-  id: "opener",
-  role: "assistant",
-  content:
-    "Hey, this is Mike's HVAC — sorry we missed your call! I can get you sorted right here over text. What's going on?",
-  ts: Date.now(),
-};
-
-const QUICK_REPLIES = [
-  "My AC stopped working",
-  "How much for a tune up?",
-  "Do you do emergency calls?",
-];
 
 function formatTime(ts: number): string {
   return new Date(ts).toLocaleTimeString([], {
@@ -39,8 +21,16 @@ function genId(): string {
   return Math.random().toString(36).slice(2, 10);
 }
 
-export default function Demo() {
-  const [messages, setMessages] = useState<Msg[]>([OPENER]);
+export default function Demo({ vertical }: { vertical: Vertical }) {
+  const { demo, id: verticalId } = vertical;
+  const opener: Msg = {
+    id: "opener",
+    role: "assistant",
+    content: demo.opener,
+    ts: Date.now(),
+  };
+
+  const [messages, setMessages] = useState<Msg[]>([opener]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -76,6 +66,7 @@ export default function Demo() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          vertical: verticalId,
           messages: nextMessages.map((m) => ({
             role: m.role,
             content: m.content,
@@ -145,10 +136,10 @@ export default function Demo() {
           {/* Header */}
           <div className="flex flex-col items-center pt-2 pb-3 border-b border-ink-100">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent-dark flex items-center justify-center text-white font-bold text-sm">
-              MH
+              {demo.initials}
             </div>
             <div className="text-[13px] font-medium text-ink-900 mt-1">
-              Mike&apos;s HVAC
+              {demo.brand}
             </div>
             <div className="text-[11px] text-ink-400">SMS / Text Message</div>
           </div>
@@ -205,7 +196,7 @@ export default function Demo() {
           {/* Quick replies */}
           {showQuickReplies && (
             <div className="flex flex-wrap gap-2 px-3 pb-2 border-t border-ink-100 pt-2">
-              {QUICK_REPLIES.map((q) => (
+              {demo.quickReplies.map((q) => (
                 <button
                   key={q}
                   type="button"
@@ -268,10 +259,10 @@ export default function Demo() {
         <p className="mt-1 text-ink-700">
           Text our live demo line:{" "}
           <a
-            href={`sms:${TWILIO_DEMO_NUMBER_SMS}`}
+            href={`sms:${demo.phoneSms}`}
             className="font-semibold text-accent underline underline-offset-4 hover:text-accent-dark"
           >
-            {TWILIO_DEMO_NUMBER_DISPLAY}
+            {demo.phoneDisplay}
           </a>
         </p>
       </div>
