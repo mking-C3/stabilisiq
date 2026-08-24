@@ -21,8 +21,8 @@ export default function Page() {
           </div>
 
           <h1 className="mt-6 font-display text-[40px] leading-[1.05] md:text-[68px] md:leading-[1.02] font-extrabold tracking-tight">
-            Every missed call is a{" "}
-            <span className="text-accent">$4,000 job</span> walking to your
+            Every missed call is{" "}
+            <span className="text-accent">a paying job</span> walking to your
             competitor.
           </h1>
 

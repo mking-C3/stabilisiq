@@ -22,7 +22,7 @@ export default function Page() {
 
           <h1 className="mt-6 font-display text-[40px] leading-[1.05] md:text-[68px] md:leading-[1.02] font-extrabold tracking-tight">
             Every missed lockout call is{" "}
-            <span className="text-accent">a $350 job</span> going to whoever
+            <span className="text-accent">a paying job</span> going to whoever
             answers first.
           </h1>
 
