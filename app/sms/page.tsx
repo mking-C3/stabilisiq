@@ -1,4 +1,6 @@
 import Link from "next/link";
+import MarketingNav from "@/components/marketing/MarketingNav";
+import MarketingFooter from "@/components/marketing/MarketingFooter";
 
 // ─── LEGAL / OPERATOR CONSTANTS ──────────────────────────────────────────
 // Reviewed / referenced by Twilio during toll-free verification.
@@ -6,6 +8,7 @@ import Link from "next/link";
 const OPERATOR_LEGAL_NAME = "StabilisIQ LLC";
 const OPERATOR_EMAIL = "matt@stabilisiq.com";
 const OPERATOR_WEBSITE = "https://stabilisiq.com";
+const CALENDLY_URL = "https://calendly.com/matt-stabilisiq/30min";
 const SMS_NUMBER_DISPLAY = "(888) 913-2301";
 const SMS_NUMBER_E164 = "+18889132301";
 const BRAND_ON_SMS = "Mike's HVAC"; // What the sender identifies as in messages
@@ -15,28 +18,27 @@ const LAST_UPDATED = "December 2, 2026";
 export default function SmsTermsPage() {
   return (
     <main className="min-h-screen bg-ink-900 text-paper">
-      {/* Header strip */}
-      <div className="border-b border-paper/10">
-        <div className="mx-auto max-w-3xl px-5 py-5 flex items-center justify-between">
+      <MarketingNav calendlyUrl={CALENDLY_URL} />
+
+      <article className="mx-auto max-w-3xl px-5 py-14 md:py-20">
+        <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="text-sm text-ink-300 hover:text-paper transition inline-flex items-center gap-1.5"
+            className="text-[15px] text-ink-300 hover:text-paper transition inline-flex items-center gap-1.5"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
-            Back to Mike&apos;s HVAC
+            Back to StabilisIQ
           </Link>
           <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink-400">
             Last updated: {LAST_UPDATED}
           </span>
         </div>
-      </div>
 
-      <article className="mx-auto max-w-3xl px-5 py-14 md:py-20">
         {/* Title */}
         <div className="mb-12">
-          <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-accent font-semibold mb-4">
+          <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-siq-light font-semibold mb-4">
             SMS Terms & Consent
           </p>
           <h1 className="font-display text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05]">
@@ -44,7 +46,7 @@ export default function SmsTermsPage() {
           </h1>
           <p className="mt-5 text-[18px] text-ink-200 leading-[1.6]">
             These terms describe how the automated text messaging service at{" "}
-            <a href={`sms:${SMS_NUMBER_E164}`} className="text-accent underline underline-offset-4">
+            <a href={`sms:${SMS_NUMBER_E164}`} className="text-siq-light underline underline-offset-4">
               {SMS_NUMBER_DISPLAY}
             </a>{" "}
             works, how you consent to receive messages, and how to stop them at
@@ -57,13 +59,24 @@ export default function SmsTermsPage() {
 
           <Section title="About the service">
             <p>
-              {OPERATOR_LEGAL_NAME} (&quot;we,&quot; &quot;us&quot;) operates an
-              automated text-back service for {BRAND_ON_SMS} at{" "}
-              {SMS_NUMBER_DISPLAY}. This is a &quot;missed call text back&quot;
-              service — when a caller reaches the number and the call goes
-              unanswered, an automated SMS reply is sent to that caller&apos;s
-              phone within a few seconds to continue the conversation over
-              text.
+              {OPERATOR_LEGAL_NAME} (&quot;we,&quot; &quot;us&quot;) operates
+              an automated text-back service at {SMS_NUMBER_DISPLAY}. The
+              number is used as the live demo line for our HVAC
+              missed-call-text-back product — publicly shown at{" "}
+              <a
+                href="https://hvac.stabilisiq.com"
+                className="text-siq-light underline underline-offset-4"
+              >
+                hvac.stabilisiq.com
+              </a>{" "}
+              — where the automated assistant identifies itself as{" "}
+              &quot;{BRAND_ON_SMS}&quot; for demonstration purposes.
+            </p>
+            <p className="mt-3">
+              This is a &quot;missed call text back&quot; service — when a
+              caller reaches the number and the call goes unanswered, an
+              automated SMS reply is sent to that caller&apos;s phone within a
+              few seconds to continue the conversation over text.
             </p>
           </Section>
 
@@ -71,7 +84,7 @@ export default function SmsTermsPage() {
             <p>
               You opt in to receive text messages from us in one of two ways:
             </p>
-            <ol className="mt-3 space-y-3 list-decimal pl-6 marker:text-accent marker:font-semibold">
+            <ol className="mt-3 space-y-3 list-decimal pl-6 marker:text-siq-light marker:font-semibold">
               <li>
                 <strong className="text-paper font-semibold">
                   You call {SMS_NUMBER_DISPLAY} and the call is not answered.
@@ -98,7 +111,7 @@ export default function SmsTermsPage() {
           </Section>
 
           <Section title="What to expect">
-            <ul className="mt-2 space-y-2.5 list-disc pl-6 marker:text-accent">
+            <ul className="mt-2 space-y-2.5 list-disc pl-6 marker:text-siq-light">
               <li>An initial automated reply within roughly 5 seconds of a missed call</li>
               <li>Short conversational follow-ups asking about your service issue</li>
               <li>Two proposed appointment windows for you to choose from</li>
@@ -144,7 +157,7 @@ export default function SmsTermsPage() {
               with our contact information. You can also email us directly at{" "}
               <a
                 href={`mailto:${OPERATOR_EMAIL}`}
-                className="text-accent underline underline-offset-4"
+                className="text-siq-light underline underline-offset-4"
               >
                 {OPERATOR_EMAIL}
               </a>
@@ -197,7 +210,7 @@ export default function SmsTermsPage() {
               Website:{" "}
               <a
                 href={OPERATOR_WEBSITE}
-                className="text-accent underline underline-offset-4"
+                className="text-siq-light underline underline-offset-4"
               >
                 {OPERATOR_WEBSITE}
               </a>
@@ -205,7 +218,7 @@ export default function SmsTermsPage() {
               Email:{" "}
               <a
                 href={`mailto:${OPERATOR_EMAIL}`}
-                className="text-accent underline underline-offset-4"
+                className="text-siq-light underline underline-offset-4"
               >
                 {OPERATOR_EMAIL}
               </a>
@@ -222,19 +235,21 @@ export default function SmsTermsPage() {
           </Section>
         </div>
 
-        {/* Footer of this page */}
+        {/* End-of-page marker */}
         <div className="mt-16 pt-8 border-t border-paper/10 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full bg-accent hover:bg-accent-dark transition-colors px-5 py-2.5 text-[15px] font-semibold text-white"
+            className="inline-flex items-center gap-2 rounded-full bg-paper hover:bg-white transition-colors px-5 py-2.5 text-[15px] font-semibold text-ink-900"
           >
-            Back to Mike&apos;s HVAC
+            Back to StabilisIQ
           </Link>
           <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink-400">
             {OPERATOR_LEGAL_NAME} · {LAST_UPDATED}
           </span>
         </div>
       </article>
+
+      <MarketingFooter />
     </main>
   );
 }

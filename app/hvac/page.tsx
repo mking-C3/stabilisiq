@@ -235,7 +235,12 @@ export default function Page() {
       <footer className="bg-ink-900 text-ink-400 border-t border-ink-700">
         <div className="mx-auto max-w-6xl px-5 py-6 text-center text-sm space-y-2">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-ink-300">
-            <a href="/sms" className="hover:text-white transition">
+            <a
+              href="https://stabilisiq.com/sms"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition"
+            >
               SMS Terms & Opt-In
             </a>
             <span className="text-ink-600">·</span>

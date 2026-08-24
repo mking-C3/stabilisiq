@@ -21,6 +21,14 @@ export function middleware(req: NextRequest) {
   const isHvac = host.startsWith("hvac.");
   const alreadyRewritten = url.pathname.startsWith("/hvac");
 
+  // Legal / compliance pages live on the operator's main site
+  // (stabilisiq.com/sms). If someone hits hvac.stabilisiq.com/sms — e.g. a
+  // Twilio reviewer following an older link — permanent-redirect them to
+  // the canonical URL rather than 404.
+  if (isHvac && url.pathname === "/sms") {
+    return NextResponse.redirect("https://stabilisiq.com/sms", 301);
+  }
+
   if (isHvac && !alreadyRewritten) {
     url.pathname = url.pathname === "/" ? "/hvac" : `/hvac${url.pathname}`;
     return NextResponse.rewrite(url);

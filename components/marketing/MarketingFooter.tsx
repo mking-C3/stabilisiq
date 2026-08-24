@@ -17,6 +17,7 @@ export default function MarketingFooter() {
             <a href="/#modes" className="hover:text-paper transition">Modes</a>
             <a href="/#loop" className="hover:text-paper transition">Loop</a>
             <a href="/about" className="hover:text-paper transition">About</a>
+            <a href="/sms" className="hover:text-paper transition">SMS Terms</a>
             <a
               href="https://hvac.stabilisiq.com"
               target="_blank"
