@@ -305,19 +305,17 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
         </div>
       )}
 
-      {/* Real text demo line */}
+      {/* Real text demo line — hidden until Twilio toll-free verification
+          clears. To restore: swap this block back to the sms: link using
+          demo.phoneSms / demo.phoneDisplay (still set in lib/verticals.ts). */}
       <div className="mt-6 text-center">
         <p className="text-sm text-ink-400 uppercase tracking-wider">
           Want the full experience?
         </p>
-        <p className="mt-1 text-ink-700">
-          Text our live demo line:{" "}
-          <a
-            href={`sms:${demo.phoneSms}`}
-            className="font-semibold text-accent underline underline-offset-4 hover:text-accent-dark"
-          >
-            {demo.phoneDisplay}
-          </a>
+        <p className="mt-2 inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm text-ink-500">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent animate-blink" />
+          Live text demo line —{" "}
+          <span className="font-semibold text-ink-700">coming soon</span>
         </p>
       </div>
     </div>

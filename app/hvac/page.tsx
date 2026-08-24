@@ -225,14 +225,11 @@ export default function Page() {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
+            {/* Live text demo line pending Twilio toll-free verification.
+                Restore the sms: link with TWILIO_DEMO_NUMBER_* once approved. */}
             <p className="text-sm text-ink-300">
-              Or try the real thing — text our demo line{" "}
-              <a
-                href={`sms:${TWILIO_DEMO_NUMBER_SMS}`}
-                className="font-semibold text-accent underline underline-offset-4"
-              >
-                {TWILIO_DEMO_NUMBER_DISPLAY}
-              </a>
+              Live text demo line —{" "}
+              <span className="font-semibold text-accent">coming soon</span>
             </p>
           </div>
         </div>
