@@ -22,6 +22,7 @@ export default function MarketingNav({ calendlyUrl }: { calendlyUrl: string }) {
           <a href="/#modes" className="hover:text-paper transition">Modes</a>
           <a href="/#loop" className="hover:text-paper transition">Loop</a>
           <Link href="/about" className="hover:text-paper transition">About</Link>
+          <Link href="/contact" className="hover:text-paper transition">Contact</Link>
         </nav>
 
         <a

@@ -13,14 +13,43 @@ import { SMS_CONSENT_TEXT } from "@/lib/consent";
 //     the submission is not enrolled for SMS.
 //   * The wording beside the checkbox mirrors SMS_CONSENT_TEXT, which is
 //     also what gets stored, so displayed and recorded text cannot drift.
+//
+// Mounted on: hvac.stabilisiq.com, locksmith.stabilisiq.com (orange accent,
+// matching the vertical product pages) and stabilisiq.com/contact (blue,
+// matching the main site). Only the accent colour differs between them —
+// the fields, the checkbox behaviour and the consent wording are identical.
+
+type AccentColor = "orange" | "blue";
+
+const THEME: Record<
+  AccentColor,
+  { field: string; check: string; link: string; button: string }
+> = {
+  orange: {
+    field: "focus:border-accent focus:ring-accent",
+    check: "accent-accent focus:ring-accent",
+    link: "text-accent hover:text-accent-dark",
+    button: "bg-accent hover:bg-accent-dark",
+  },
+  blue: {
+    field: "focus:border-siq focus:ring-siq",
+    check: "accent-siq focus:ring-siq",
+    link: "text-siq hover:text-siq-dark",
+    button: "bg-siq hover:bg-siq-dark",
+  },
+};
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 export default function ContactForm({
   sourcePage = "unknown",
+  accentColor = "orange",
 }: {
   sourcePage?: string;
+  accentColor?: AccentColor;
 }) {
+  const t = THEME[accentColor];
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -134,6 +163,7 @@ export default function ContactForm({
           onChange={setName}
           autoComplete="name"
           placeholder="Jane Doe"
+          focusClass={t.field}
         />
         <Field
           id="phone"
@@ -144,6 +174,7 @@ export default function ContactForm({
           onChange={setPhone}
           autoComplete="tel"
           placeholder="(555) 123-4567"
+          focusClass={t.field}
         />
       </div>
 
@@ -157,6 +188,7 @@ export default function ContactForm({
           onChange={setEmail}
           autoComplete="email"
           placeholder="jane@example.com"
+          focusClass={t.field}
         />
       </div>
 
@@ -175,7 +207,7 @@ export default function ContactForm({
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Tell us what you need — what's broken, or what you want to see."
-          className="w-full rounded-lg border border-ink-200 px-3.5 py-2.5 text-[15px] text-ink-900 placeholder:text-ink-300 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent resize-y"
+          className={`w-full rounded-lg border border-ink-200 px-3.5 py-2.5 text-[15px] text-ink-900 placeholder:text-ink-300 focus:outline-none focus:ring-1 resize-y ${t.field}`}
         />
       </div>
 
@@ -189,7 +221,7 @@ export default function ContactForm({
             type="checkbox"
             checked={smsConsent}
             onChange={(e) => setSmsConsent(e.target.checked)}
-            className="mt-0.5 h-5 w-5 flex-shrink-0 rounded border-2 border-ink-400 accent-accent focus:ring-2 focus:ring-accent focus:ring-offset-1 cursor-pointer"
+            className={`mt-0.5 h-5 w-5 flex-shrink-0 rounded border-2 border-ink-400 focus:ring-2 focus:ring-offset-1 cursor-pointer ${t.check}`}
           />
           <label
             htmlFor="sms_consent"
@@ -204,7 +236,7 @@ export default function ContactForm({
               href="/privacy"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-accent underline underline-offset-2 hover:text-accent-dark"
+              className={`font-semibold underline underline-offset-2 ${t.link}`}
             >
               Privacy Policy
             </a>{" "}
@@ -213,7 +245,7 @@ export default function ContactForm({
               href="/terms"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-accent underline underline-offset-2 hover:text-accent-dark"
+              className={`font-semibold underline underline-offset-2 ${t.link}`}
             >
               Terms
             </a>
@@ -236,7 +268,7 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={status === "sending"}
-          className="inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-dark disabled:bg-ink-300 transition-colors px-7 py-3.5 text-base font-semibold text-white active:scale-[0.98]"
+          className={`inline-flex items-center justify-center gap-2 rounded-full disabled:bg-ink-300 transition-colors px-7 py-3.5 text-base font-semibold text-white active:scale-[0.98] ${t.button}`}
         >
           {status === "sending" ? "Sending…" : "Send message"}
           {status !== "sending" && (
@@ -277,6 +309,7 @@ function Field({
   optional,
   autoComplete,
   placeholder,
+  focusClass,
 }: {
   id: string;
   label: string;
@@ -287,6 +320,7 @@ function Field({
   optional?: boolean;
   autoComplete?: string;
   placeholder?: string;
+  focusClass: string;
 }) {
   return (
     <div>
@@ -306,7 +340,7 @@ function Field({
         autoComplete={autoComplete}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-lg border border-ink-200 px-3.5 py-2.5 text-[15px] text-ink-900 placeholder:text-ink-300 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent"
+        className={`w-full rounded-lg border border-ink-200 px-3.5 py-2.5 text-[15px] text-ink-900 placeholder:text-ink-300 focus:outline-none focus:ring-1 ${focusClass}`}
       />
     </div>
   );

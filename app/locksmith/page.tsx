@@ -1,4 +1,5 @@
 import Demo from "@/components/Demo";
+import ContactForm from "@/components/ContactForm";
 import PricingTiers from "@/components/PricingTiers";
 import { VERTICALS } from "@/lib/verticals";
 
@@ -96,6 +97,28 @@ export default function Page() {
 
           <div className="mt-10 md:mt-14">
             <Demo vertical={vertical} />
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT + SMS OPT-IN ───────────────────────────── */}
+      <section id="contact" className="bg-white py-16 md:py-24 border-t border-ink-100">
+        <div className="mx-auto max-w-6xl px-5">
+          <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs uppercase tracking-[0.2em] text-accent font-semibold">
+              Get in touch
+            </span>
+            <h2 className="mt-3 font-display text-3xl md:text-5xl font-extrabold tracking-tight">
+              Want this running in your shop?
+            </h2>
+            <p className="mt-4 text-ink-500 md:text-lg">
+              Tell us what you need and we&apos;ll get back to you. Want replies
+              by text? Tick the consent box &mdash; it&apos;s optional either way.
+            </p>
+          </div>
+
+          <div className="mt-10 max-w-2xl mx-auto">
+            <ContactForm sourcePage="locksmith.stabilisiq.com" />
           </div>
         </div>
       </section>
