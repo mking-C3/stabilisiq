@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
-import { BUTTON, BUTTON_QUIET, CALENDLY_URL, LINK } from "@/lib/site";
+import { BUTTON, BUTTON_QUIET, CALENDLY_URL, LINK, SHARE_IMAGE } from "@/lib/site";
 
 // The propane will-call and reconciliation runbook, published in full.
 // Content carried over from the original StabilisIQ propane page (what
@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "The full runbook for a propane distributor, dispatch through billing: what breaks, what to measure, the thresholds that trigger action, and what should improve. Free to read, nothing to sign up for.",
   alternates: { canonical: "/playbooks/propane" },
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "Propane delivery runbook: will-call and reconciliation",
     description:
       "What breaks between dispatch and billing, what to measure, and the thresholds that trigger action. Published in full.",

@@ -19,3 +19,14 @@ export const BUTTON_QUIET =
 // Inline text link.
 export const LINK =
   "underline decoration-ink-900/40 decoration-1 underline-offset-[5px] transition-colors hover:decoration-ink-900 hover:bg-hl";
+
+// Social share image (public/share.png, 1200x630). Listed explicitly in each
+// page's openGraph block: a page that defines its own openGraph does NOT
+// inherit an image from a parent segment, so the file convention
+// (opengraph-image.png) silently dropped it on half the pages.
+export const SHARE_IMAGE = {
+  url: "/share.png",
+  width: 1200,
+  height: 630,
+  alt: "StabilisIQ. Something in your operation is leaking money. Work out what it costs, then talk to the person who fixes it.",
+};

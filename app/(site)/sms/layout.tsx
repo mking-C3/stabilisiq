@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHARE_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   // absolute: the root title template would otherwise append the brand twice
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Text messaging terms and consent for the (888) 913-2301 auto text-back service operated by StabilisIQ LLC.",
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "SMS Terms & Opt-In — StabilisIQ",
     description:
       "Text messaging terms and consent for the (888) 913-2301 auto text-back service.",

@@ -3,7 +3,7 @@ import Link from "next/link";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import ContactForm from "@/components/ContactForm";
-import { CALENDLY_URL, EMAIL, LINK } from "@/lib/site";
+import { CALENDLY_URL, EMAIL, LINK, SHARE_IMAGE } from "@/lib/site";
 
 // Canonical contact page for the StabilisIQ brand. Carries the same SMS
 // opt-in checkbox as the vertical product pages. This is the URL to hand a
@@ -16,6 +16,7 @@ export const metadata: Metadata = {
   description:
     "Tell Matt what's leaking. Send a message, or book 15 minutes.",
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "Contact StabilisIQ",
     description:
       "Tell Matt what's leaking. Send a message, or book 15 minutes.",

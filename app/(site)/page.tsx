@@ -6,7 +6,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 import LeakCalculator from "@/components/site/LeakCalculator";
 import Demo from "@/components/Demo";
 import { VERTICALS } from "@/lib/verticals";
-import { BUTTON, BUTTON_QUIET, CALENDLY_URL, EMAIL, LINK } from "@/lib/site";
+import { BUTTON, BUTTON_QUIET, CALENDLY_URL, EMAIL, LINK, SHARE_IMAGE } from "@/lib/site";
 
 // stabilisiq.com home.
 //
@@ -24,6 +24,7 @@ import { BUTTON, BUTTON_QUIET, CALENDLY_URL, EMAIL, LINK } from "@/lib/site";
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "StabilisIQ: find the leak in your operation and fix it",
     description:
       "Work out what missed calls, slow quotes, re-keyed work and unbilled jobs cost you. Then talk to the person who fixes them.",
@@ -31,7 +32,6 @@ export const metadata: Metadata = {
     url: "https://stabilisiq.com",
     siteName: "StabilisIQ",
   },
-  twitter: { card: "summary_large_image" },
 };
 
 const WRAP = "mx-auto max-w-[1120px] px-5 md:px-8";
@@ -89,6 +89,7 @@ const JSON_LD = {
       url: "https://stabilisiq.com",
       email: EMAIL,
       logo: "https://stabilisiq.com/icon.svg",
+      image: "https://stabilisiq.com/share.png",
       description:
         "Operations repair: finding where a company's operation leaks money, fixing it, and building the automation that keeps it fixed.",
       founder: { "@id": "https://stabilisiq.com/#matt" },

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHARE_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About Matt King",
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Matt King runs StabilisIQ. Process improvement and operational efficiency, done rather than recommended.",
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "About Matt King, StabilisIQ",
     description:
       "Matt King runs StabilisIQ. Process improvement and operational efficiency, done rather than recommended.",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHARE_IMAGE } from "@/lib/site";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
   description: "The terms governing use of the StabilisIQ website and services.",
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "Terms of Service — StabilisIQ",
     description: "The terms governing use of the StabilisIQ website and services.",
     type: "website",

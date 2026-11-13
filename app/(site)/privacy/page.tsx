@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SHARE_IMAGE } from "@/lib/site";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/privacy" },
   description: "How StabilisIQ collects, uses, and safeguards information, including data submitted through our contact form and SMS program.",
   openGraph: {
+    images: [SHARE_IMAGE],
     title: "Privacy Policy — StabilisIQ",
     description: "How StabilisIQ collects, uses, and safeguards information, including data submitted through our contact form and SMS program.",
     type: "website",
