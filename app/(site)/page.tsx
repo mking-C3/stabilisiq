@@ -81,8 +81,8 @@ function Hero() {
             />
           </div>
           <figcaption className="mt-3 max-w-[300px] text-[15px] leading-snug text-ink-500 md:ml-auto">
-            Matt King runs StabilisIQ. He is who answers the email and who does
-            the work.
+            Matt King runs StabilisIQ. He answers the email and he does the
+            work.
           </figcaption>
         </figure>
       </div>
