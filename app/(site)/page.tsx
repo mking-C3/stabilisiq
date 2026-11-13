@@ -1,29 +1,140 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
 import LeakCalculator from "@/components/site/LeakCalculator";
+import Demo from "@/components/Demo";
+import { VERTICALS } from "@/lib/verticals";
 import { BUTTON, BUTTON_QUIET, CALENDLY_URL, EMAIL, LINK } from "@/lib/site";
 
 // stabilisiq.com home.
 //
 // Written in the first person because one person does the work. Every claim
-// here is something that exists: the two live demos, the quoting tool, the
-// propane playbook. No invented clients, no borrowed statistics.
+// here is something that exists: the live demo on this page, the quoting
+// tool, the published propane runbook. No invented clients, no borrowed
+// statistics.
+//
+// The page is built around things comparable firms' sites don't offer: a
+// calculator that shows its arithmetic, a product you can use without
+// leaving the page, a real runbook to read, a sample of the monthly report,
+// dated first-90-days specifics, and straight answers on ownership, access
+// and exit.
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "StabilisIQ: find the leak in your operation and fix it",
+    description:
+      "Work out what missed calls, slow quotes, re-keyed work and unbilled jobs cost you. Then talk to the person who fixes them.",
+    type: "website",
+    url: "https://stabilisiq.com",
+    siteName: "StabilisIQ",
+  },
+  twitter: { card: "summary_large_image" },
+};
 
 const WRAP = "mx-auto max-w-[1120px] px-5 md:px-8";
 const H2 =
   "font-head text-[30px] font-bold leading-[1.1] tracking-[-0.015em] text-ink-900 md:text-[40px]";
 
+// Questions buyers ask that most firms' sites leave out. Also emitted as
+// structured data below, so keep answers as plain strings.
+const QUESTIONS: [string, string][] = [
+  [
+    "Do I need a fractional COO?",
+    "Probably not. Most people who think they do have three or four processes that keep breaking. Fixing those is a smaller job than hiring an executive, and it is the job I do.",
+  ],
+  [
+    "Are you a consultant?",
+    "Not in the usual sense. A consultant analyses and advises. I take ongoing responsibility for watching, catching, stepping in and fixing, through to resolution.",
+  ],
+  [
+    "Is this software I have to buy?",
+    "No. I work on top of the systems you already run, and nothing gets ripped out. The one packaged product is the missed-call text-back for small service shops.",
+  ],
+  [
+    "What access do you need?",
+    "I start with minimal, read-only access. It widens only when the work needs it and you have approved it, and every access request is documented.",
+  ],
+  [
+    "How do you handle security?",
+    "Least privilege, auditable access, and methods you approve before anything is put in place. I work inside your existing security and compliance rules.",
+  ],
+  [
+    "Who owns what you build?",
+    "You do. A build runs on infrastructure you choose, and it is yours when it is finished.",
+  ],
+  [
+    "Who looks after it afterwards?",
+    "Your call. Your team can run it, or I can keep watching it under a managed engagement.",
+  ],
+  [
+    "How long am I committed?",
+    "A managed engagement starts with 90 days on a monthly retainer. A build is a fixed scope, usually 4 to 12 weeks.",
+  ],
+  [
+    "What happens on the first call?",
+    "It is fifteen minutes. You describe what is leaking, I ask a few questions, and I tell you whether I am the right person for it. If I am not, I usually know who is. There is no deck.",
+  ],
+];
+
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://stabilisiq.com/#business",
+      name: "StabilisIQ",
+      url: "https://stabilisiq.com",
+      email: EMAIL,
+      logo: "https://stabilisiq.com/icon.svg",
+      description:
+        "Operations repair: finding where a company's operation leaks money, fixing it, and building the automation that keeps it fixed.",
+      founder: { "@id": "https://stabilisiq.com/#matt" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://stabilisiq.com/#matt",
+      name: "Matt King",
+      jobTitle: "Founder",
+      url: "https://stabilisiq.com/about",
+      image: "https://stabilisiq.com/matt-headshot.png",
+      worksFor: { "@id": "https://stabilisiq.com/#business" },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://stabilisiq.com/#site",
+      url: "https://stabilisiq.com",
+      name: "StabilisIQ",
+      publisher: { "@id": "https://stabilisiq.com/#business" },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stabilisiq.com/#questions",
+      mainEntity: QUESTIONS.map(([q, a]) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    },
+  ],
+};
+
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
       <SiteHeader />
-      <main>
+      <main id="main">
         <Hero />
         <Calculator />
         <Work />
         <How />
+        <Questions />
         <Fit />
         <Talk />
       </main>
@@ -54,17 +165,12 @@ function Hero() {
             <a href="#calculator" className={BUTTON}>
               Work out what it&apos;s costing you
             </a>
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={BUTTON_QUIET}
-            >
-              Book 15 minutes
+            <a href="#work" className={BUTTON_QUIET}>
+              Try something I built
             </a>
           </div>
           <p className="mt-4 text-[15px] text-ink-500">
-            The calculator runs in your browser. No signup, no email gate.
+            Both run right here on the page. No signup, no email gate.
           </p>
         </div>
 
@@ -99,7 +205,7 @@ function Calculator() {
       className="scroll-mt-4 border-y-2 border-ink-900 bg-sheet-deep"
     >
       <div className={`${WRAP} py-14 md:py-20`}>
-        <div className="max-w-[720px]">
+        <div className="ws-hide max-w-[720px]">
           <h2 className={H2}>Put a number on the leak.</h2>
           <p className="mt-4 text-[18px] leading-[1.6] text-ink-700 md:text-[19px]">
             Pick the one that sounds like you and swap in your own figures. The
@@ -121,33 +227,46 @@ function Work() {
     <section id="work" className="scroll-mt-4">
       <div className={`${WRAP} py-16 md:py-24`}>
         <div className="max-w-[720px]">
-          <h2 className={H2}>Things I&apos;ve built that you can go and look at.</h2>
+          <h2 className={H2}>Things I&apos;ve built that you can use right now.</h2>
           <p className="mt-4 text-[18px] leading-[1.6] text-ink-700 md:text-[19px]">
             I don&apos;t have a wall of client logos, and I won&apos;t invent
-            one. What I have is the work itself.
+            one. What I have is the work itself, so here it is.
           </p>
         </div>
 
-        <div className="mt-10 border-t-2 border-ink-900">
-          <WorkRow
-            where="Home services"
-            status="Live. Try it yourself."
-            title="Missed-call text-back"
-          >
-            <p>
-              When a shop misses a call, the caller gets a text within five
-              seconds. It asks what&apos;s wrong, offers appointment times, and
-              puts the job on the calendar while the owner is still on the
-              roof.
+        {/* The live product, usable without leaving the page */}
+        <div className="mt-10 grid items-center gap-x-12 gap-y-10 border-y-2 border-ink-900 py-10 md:grid-cols-12 md:py-14">
+          <div className="md:col-span-6 lg:col-span-7">
+            <p className="text-[16px] font-semibold text-ink-900">
+              Home services
+              <span className="ml-2 font-normal text-ink-500">
+                Live. This is the real thing.
+              </span>
             </p>
-            <p className="mt-4">
+            <h3 className="mt-2 font-head text-[28px] font-bold leading-tight tracking-[-0.015em] md:text-[36px]">
+              Missed-call text-back
+            </h3>
+            <div className="mt-4 max-w-[54ch] space-y-4 text-[18px] leading-[1.6] text-ink-700">
+              <p>
+                When a shop misses a call, the caller gets a text within five
+                seconds. It asks what&apos;s wrong, offers appointment times,
+                and puts the job on the calendar while the owner is still on
+                the roof.
+              </p>
+              <p>
+                The phone on this page is wired to a made-up shop called
+                Mike&apos;s HVAC. Pretend your air conditioning just died and
+                text it. See how long it takes to get you booked.
+              </p>
+            </div>
+            <p className="mt-6 text-[17px]">
               <a
                 href="https://hvac.stabilisiq.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={LINK}
               >
-                Text the HVAC demo
+                The full HVAC version
               </a>
               <span className="mx-3 text-ink-300">/</span>
               <a
@@ -156,42 +275,45 @@ function Work() {
                 rel="noopener noreferrer"
                 className={LINK}
               >
-                Text the locksmith demo
+                The locksmith version
               </a>
             </p>
-          </WorkRow>
-
-          <WorkRow
-            where="Charter aviation"
-            status="Built and run."
-            title="QuoteOps Autopilot"
-          >
-            <p>
-              Reads an incoming charter request, checks which aircraft fit, and
-              drafts two or three priced options with an audit trail. A person
-              approves each quote before it goes out. Time to first quote went
-              from 30 to 90 minutes down to 3 to 10.
-            </p>
-          </WorkRow>
-
-          <WorkRow
-            where="Propane delivery"
-            status="Written playbook."
-            title="Will-call and reconciliation runbook"
-          >
-            <p>
-              The thresholds and the steps for catching will-call orders that
-              sit longer than 24 hours, partial fills that are more than 15%
-              off the ticket, and deliveries that never reach billing. Detailed
-              enough to disagree with.
-            </p>
-            <p className="mt-4">
-              <Link href="/contact" className={LINK}>
-                Ask me to walk you through it
-              </Link>
-            </p>
-          </WorkRow>
+          </div>
+          <div className="md:col-span-6 lg:col-span-5">
+            <Demo vertical={VERTICALS.hvac} />
+          </div>
         </div>
+
+        <WorkRow
+          where="Propane delivery"
+          status="Published in full."
+          title="Will-call and reconciliation runbook"
+        >
+          <p>
+            The signals to measure, and the thresholds that trigger action:
+            will-call orders that sit longer than 24 hours, partial fills more
+            than 15% off the ticket, deliveries that never reach billing. Read
+            the whole thing. There is nothing to sign up for.
+          </p>
+          <p className="mt-4">
+            <Link href="/playbooks/propane" className={LINK}>
+              Read the runbook
+            </Link>
+          </p>
+        </WorkRow>
+
+        <WorkRow
+          where="Charter aviation"
+          status="Built and run."
+          title="QuoteOps Autopilot"
+        >
+          <p>
+            Reads an incoming charter request, checks which aircraft fit, and
+            drafts two or three priced options with an audit trail. A person
+            approves each quote before it goes out. Time to first quote went
+            from 30 to 90 minutes down to 3 to 10.
+          </p>
+        </WorkRow>
       </div>
     </section>
   );
@@ -228,26 +350,39 @@ function WorkRow({
 
 /* ─── How I work ───────────────────────────────────────────────────────── */
 
-const MONTH = [
+// The first 90 days of a managed engagement, with dates. Every line restates
+// a term already offered (read-only start, 30 to 45 day foundation, monthly
+// report, 90-day initial commitment); nothing here is a new promise.
+const NINETY: [string, string, string][] = [
   [
-    "Measure",
-    "I hook into the systems you already run and write down what normal looks like, by transaction, by queue, by exception code.",
+    "Day 0",
+    "A 15-minute call",
+    "You describe the leak. I tell you whether I'm the right person for it.",
   ],
   [
-    "Watch",
-    "Monitoring runs against that baseline all day. Stalls and silent failures show up before a customer notices.",
+    "Week 1",
+    "Read-only access, nothing more",
+    "I map the handoffs between your systems and write down what normal looks like, by transaction, by queue, by exception code.",
   ],
   [
-    "Step in",
-    "When a threshold trips, the runbook fires and the right person gets the context. I act on it. I don't just forward the alert.",
+    "By day 45",
+    "Instruments, thresholds, runbooks",
+    "The measuring is in place, and we have agreed what trips an alarm and what happens when it does.",
   ],
   [
-    "Fix the cause",
-    "Anything that breaks twice gets a change to the process, the system, or the runbook, so there is no third time.",
+    "From then on",
+    "Watching and stepping in",
+    "Monitoring runs all day. When a threshold trips I act on it. I don't just forward the alert. Anything that breaks twice gets a root-cause fix so there is no third time.",
   ],
   [
-    "Report",
-    "One page a month: what the operation did, what moved, and what I changed.",
+    "Every month",
+    "One page",
+    "What the operation did, what moved, and what I changed. A sample is below.",
+  ],
+  [
+    "Day 90",
+    "Your decision",
+    "The initial commitment ends. Keep going, turn the recurring problem into a one-time build, or stop.",
   ],
 ];
 
@@ -290,28 +425,53 @@ function How() {
           then do the second so it stops.
         </p>
 
+        {/* Dated specifics */}
         <div className="mt-16 grid gap-x-12 gap-y-6 md:grid-cols-12">
-          <h3 className="font-head text-[22px] font-bold leading-tight tracking-[-0.01em] md:col-span-4 md:text-[24px]">
-            What a month of managed work looks like
-          </h3>
+          <div className="md:col-span-4">
+            <h3 className="font-head text-[22px] font-bold leading-tight tracking-[-0.01em] md:text-[26px]">
+              The first 90 days, with dates
+            </h3>
+            <p className="mt-3 text-[16px] leading-[1.55] text-ink-500">
+              For a managed engagement. A build has its own schedule, agreed
+              before it starts.
+            </p>
+          </div>
           <ol className="border-t border-ink-900/25 md:col-span-8">
-            {MONTH.map(([name, body], i) => (
+            {NINETY.map(([when, what, detail]) => (
               <li
-                key={name}
-                className="grid grid-cols-[2.25rem_1fr] gap-x-3 border-b border-ink-900/25 py-5 sm:grid-cols-[2.25rem_9.5rem_1fr]"
+                key={when}
+                className="grid gap-x-6 gap-y-1 border-b border-ink-900/25 py-5 sm:grid-cols-[7.5rem_1fr]"
               >
-                <span className="font-mono text-[16px] tabular-nums text-ink-500">
-                  {i + 1}.
+                <span className="font-mono text-[15px] tabular-nums text-ink-500 sm:pt-0.5">
+                  {when}
                 </span>
-                <span className="text-[17px] font-semibold text-ink-900">
-                  {name}
-                </span>
-                <span className="col-start-2 mt-1 text-[17px] leading-[1.55] text-ink-700 sm:col-start-3 sm:mt-0">
-                  {body}
-                </span>
+                <div>
+                  <p className="text-[18px] font-semibold text-ink-900">
+                    {what}
+                  </p>
+                  <p className="mt-1 text-[17px] leading-[1.55] text-ink-700">
+                    {detail}
+                  </p>
+                </div>
               </li>
             ))}
           </ol>
+        </div>
+
+        {/* The monthly report */}
+        <div className="mt-16 grid gap-x-12 gap-y-6 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <h3 className="font-head text-[22px] font-bold leading-tight tracking-[-0.01em] md:text-[26px]">
+              The page you get each month
+            </h3>
+            <p className="mt-3 text-[16px] leading-[1.55] text-ink-500">
+              This is the layout. The entries are made up, because a real one
+              belongs to the client it was written for.
+            </p>
+          </div>
+          <div className="md:col-span-8">
+            <SampleReport />
+          </div>
         </div>
       </div>
     </section>
@@ -340,6 +500,131 @@ function Way({
       </div>
       <p className="mt-5 text-[16px] font-semibold text-ink-900">{terms}</p>
     </div>
+  );
+}
+
+const REPORT: [string, string[]][] = [
+  [
+    "What moved",
+    [
+      "Cycle time: down",
+      "Repeat incidents: down",
+      "Rework volume: down",
+      "Time to resolve: improving",
+    ],
+  ],
+  [
+    "Top exceptions",
+    [
+      "Order processing timeout (ERP integration)",
+      "Invoice reconciliation mismatch (billing)",
+      "Fulfillment delay (warehouse handoff)",
+      "Data sync failure (CRM to ERP)",
+    ],
+  ],
+  [
+    "Caught before it cost you",
+    [
+      "3 escalations resolved before the SLA was breached",
+      "Revenue leakage detected and corrected",
+      "Silent failure caught in the overnight batch",
+    ],
+  ],
+  [
+    "Next month",
+    [
+      "Root-cause analysis: billing sync",
+      "Runbook update: warehouse exception flow",
+      "Recalibrate the cycle-time baseline",
+    ],
+  ],
+];
+
+function SampleReport() {
+  return (
+    <figure
+      aria-label="Sample monthly operations report"
+      className="border-2 border-ink-900 bg-white"
+    >
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b-2 border-ink-900 px-5 py-4 md:px-7">
+        <p className="font-head text-[20px] font-bold tracking-[-0.01em]">
+          Operations report
+        </p>
+        <p className="font-mono text-[13px] text-ink-500">
+          SAMPLE &middot; made-up entries &middot; one page
+        </p>
+      </div>
+      <div className="grid sm:grid-cols-2">
+        {REPORT.map(([title, items], i) => (
+          <div
+            key={title}
+            className={[
+              "px-5 py-5 md:px-7",
+              i > 0 ? "border-t border-ink-900/25" : "",
+              i === 1 ? "sm:border-t-0" : "",
+              i % 2 === 1 ? "sm:border-l sm:border-ink-900/25" : "",
+            ].join(" ")}
+          >
+            <p className="text-[15px] font-semibold text-ink-900">{title}</p>
+            <ul className="mt-2 space-y-1.5 text-[15px] leading-[1.45] text-ink-700">
+              {items.map((it) => (
+                <li key={it} className="flex gap-2">
+                  <span aria-hidden="true" className="text-ink-300">
+                    &ndash;
+                  </span>
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </figure>
+  );
+}
+
+/* ─── Questions ────────────────────────────────────────────────────────── */
+
+function Questions() {
+  return (
+    <section id="questions" className="scroll-mt-4 border-t-2 border-ink-900">
+      <div className={`${WRAP} grid gap-x-12 gap-y-8 py-16 md:grid-cols-12 md:py-24`}>
+        <div className="md:col-span-4">
+          <h2 className={H2}>Straight answers.</h2>
+          <p className="mt-4 text-[17px] leading-[1.6] text-ink-700">
+            The things people ask on the first call, answered before it.
+          </p>
+        </div>
+        <div className="border-t border-ink-900/25 md:col-span-8">
+          {QUESTIONS.map(([q, a], i) => (
+            <details
+              key={q}
+              open={i === 0}
+              className="group border-b border-ink-900/25"
+            >
+              <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 py-5 text-[18px] font-semibold text-ink-900 marker:hidden hover:bg-hl/40 [&::-webkit-details-marker]:hidden">
+                <span>{q}</span>
+                <span
+                  aria-hidden="true"
+                  className="font-mono text-[20px] font-normal text-ink-500 group-open:hidden"
+                >
+                  +
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="hidden font-mono text-[20px] font-normal text-ink-500 group-open:inline"
+                >
+                  &minus;
+                </span>
+              </summary>
+              <p className="max-w-[60ch] pb-6 text-[18px] leading-[1.6] text-ink-700">
+                {a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

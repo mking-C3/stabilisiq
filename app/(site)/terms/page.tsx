@@ -9,6 +9,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
+  alternates: { canonical: "/terms" },
   description: "The terms governing use of the StabilisIQ website and services.",
   openGraph: {
     title: "Terms of Service — StabilisIQ",
@@ -23,7 +24,7 @@ export default function TermsOfServicePage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="pt-14 pb-20 md:pt-20 md:pb-28">
+      <main id="main" className="pt-14 pb-20 md:pt-20 md:pb-28">
         <div className="mx-auto max-w-3xl px-5">
 
             <h1 className="font-head text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05] mb-3">Terms of Service</h1>

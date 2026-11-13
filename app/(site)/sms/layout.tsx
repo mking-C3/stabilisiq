@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   // absolute: the root title template would otherwise append the brand twice
   title: { absolute: "SMS Terms & Opt-In — StabilisIQ" },
+  alternates: { canonical: "/sms" },
   description:
     "Text messaging terms and consent for the (888) 913-2301 auto text-back service operated by StabilisIQ LLC.",
   openGraph: {

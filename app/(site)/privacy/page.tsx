@@ -9,6 +9,7 @@ import SiteFooter from "@/components/site/SiteFooter";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
+  alternates: { canonical: "/privacy" },
   description: "How StabilisIQ collects, uses, and safeguards information, including data submitted through our contact form and SMS program.",
   openGraph: {
     title: "Privacy Policy — StabilisIQ",
@@ -23,7 +24,7 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="pt-14 pb-20 md:pt-20 md:pb-28">
+      <main id="main" className="pt-14 pb-20 md:pt-20 md:pb-28">
         <div className="mx-auto max-w-3xl px-5">
 
             <h1 className="font-head text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05] mb-3">Privacy Policy</h1>

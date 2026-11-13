@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Matt King",
+  alternates: { canonical: "/about" },
   description:
     "Matt King runs StabilisIQ. Process improvement and operational efficiency, done rather than recommended.",
   openGraph: {

@@ -20,7 +20,7 @@ export default function SmsTermsPage() {
     <main className="min-h-screen">
       <SiteHeader />
 
-      <article className="mx-auto max-w-3xl px-5 py-14 md:py-20">
+      <article id="main" className="mx-auto max-w-3xl px-5 py-14 md:py-20">
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"

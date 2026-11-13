@@ -12,6 +12,13 @@ const NAV = [
 export default function SiteHeader() {
   return (
     <header className="border-b-2 border-ink-900 bg-sheet">
+      {/* Keyboard users: jump past the navigation */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-[3px] focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-white"
+      >
+        Skip to the content
+      </a>
       <div className="mx-auto max-w-[1120px] px-5 md:px-8">
         <div className="flex h-[68px] items-center justify-between gap-6">
           <Link

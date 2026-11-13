@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useMemo, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   BUTTON,
@@ -22,6 +22,10 @@ import {
 //     copy says so.
 //   * Nothing is transmitted. "Send me this worksheet" only copies the
 //     summary into the contact form, which the visitor then chooses to send.
+//
+// A worksheet can also be shared or kept: "Copy a link" encodes the numbers
+// in the URL fragment (never sent to the server), and "Print" prints the
+// worksheet alone, for whoever signs off on fixing it.
 
 type Unit = "$" | "%" | "";
 
@@ -368,6 +372,32 @@ const SCENARIOS: Scenario[] = [
 const defaults = (s: Scenario) =>
   Object.fromEntries(s.fields.map((f) => [f.key, f.def]));
 
+// Share links look like  /#calc=calls;calls=120;missed=20;book=40;job=450;r=50
+// The fragment stays in the browser, so the figures never reach a server log.
+const SHARE_PREFIX = "#calc=";
+
+function parseShare(hash: string) {
+  if (!hash.startsWith(SHARE_PREFIX)) return null;
+  const [id, ...pairs] = decodeURIComponent(
+    hash.slice(SHARE_PREFIX.length),
+  ).split(";");
+  const scenario = SCENARIOS.find((s) => s.id === id);
+  if (!scenario) return null;
+  const vals = defaults(scenario);
+  let recover = scenario.recoverDefault;
+  let cost = 0;
+  for (const pair of pairs) {
+    const [k, raw] = pair.split("=");
+    const n = Number(raw);
+    if (!Number.isFinite(n) || n < 0) continue;
+    const field = scenario.fields.find((f) => f.key === k);
+    if (field) vals[k] = Math.min(n, field.cap ?? field.max);
+    else if (k === "r") recover = Math.min(Math.max(n, 5), 100);
+    else if (k === "cost") cost = Math.min(n, 100000000);
+  }
+  return { scenario, vals, recover, cost };
+}
+
 export default function LeakCalculator() {
   const router = useRouter();
   const [activeId, setActiveId] = useState(SCENARIOS[0].id);
@@ -381,6 +411,25 @@ export default function LeakCalculator() {
     Object.fromEntries(SCENARIOS.map((s) => [s.id, s.recoverDefault])),
   );
   const [fixCost, setFixCost] = useState(0);
+  const [copied, setCopied] = useState(false);
+
+  // Opened from a shared link: load its numbers and bring the calculator
+  // into view. Also runs on hashchange, so pasting a share link into a tab
+  // that already has the page open works too.
+  useEffect(() => {
+    function loadShared() {
+      const shared = parseShare(window.location.hash);
+      if (!shared) return;
+      setActiveId(shared.scenario.id);
+      setValues((all) => ({ ...all, [shared.scenario.id]: shared.vals }));
+      setRecover((all) => ({ ...all, [shared.scenario.id]: shared.recover }));
+      setFixCost(shared.cost);
+      document.getElementById("calculator")?.scrollIntoView();
+    }
+    loadShared();
+    window.addEventListener("hashchange", loadShared);
+    return () => window.removeEventListener("hashchange", loadShared);
+  }, []);
 
   const scenario = SCENARIOS.find((s) => s.id === activeId) ?? SCENARIOS[0];
   const v = values[scenario.id];
@@ -420,6 +469,42 @@ export default function LeakCalculator() {
     return out.join("\n");
   }
 
+  function shareUrl() {
+    const parts = [
+      scenario.id,
+      ...scenario.fields.map((f) => `${f.key}=${v[f.key]}`),
+      `r=${pct}`,
+    ];
+    if (fixCost > 0) parts.push(`cost=${fixCost}`);
+    return `${window.location.origin}/${SHARE_PREFIX}${parts.join(";")}`;
+  }
+
+  async function copyLink() {
+    const url = shareUrl();
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // Clipboard blocked: put the link in the address bar so it can be
+      // copied by hand.
+      window.history.replaceState(null, "", url);
+    }
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2500);
+  }
+
+  function printWorksheet() {
+    // The class limits the print stylesheet (globals.css) to this one
+    // action, so printing the page normally still prints the whole page.
+    const root = document.documentElement;
+    root.classList.add("print-worksheet");
+    const done = () => {
+      root.classList.remove("print-worksheet");
+      window.removeEventListener("afterprint", done);
+    };
+    window.addEventListener("afterprint", done);
+    window.print();
+  }
+
   function sendWorksheet() {
     try {
       window.sessionStorage.setItem(WORKSHEET_KEY, summary());
@@ -436,7 +521,7 @@ export default function LeakCalculator() {
       <div
         role="tablist"
         aria-label="Which leak sounds like yours"
-        className="grid grid-cols-2 gap-2 lg:grid-cols-4"
+        className="ws-hide grid grid-cols-2 gap-2 lg:grid-cols-4"
       >
         {SCENARIOS.map((s) => {
           const on = s.id === scenario.id;
@@ -470,7 +555,7 @@ export default function LeakCalculator() {
         className="mt-4 grid items-start gap-4 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]"
       >
         {/* ── Your numbers ─────────────────────────────────────────── */}
-        <div className="rounded-[3px] border-2 border-ink-900 bg-white p-5 md:p-8">
+        <div className="ws-hide rounded-[3px] border-2 border-ink-900 bg-white p-5 md:p-8">
           <p className="font-head text-[20px] font-medium leading-snug text-ink-900 md:text-[22px]">
             {scenario.story}
           </p>
@@ -499,7 +584,10 @@ export default function LeakCalculator() {
         </div>
 
         {/* ── The worksheet (legal pad) ────────────────────────────── */}
-        <div className="relative overflow-hidden rounded-[3px] border-2 border-ink-900 bg-pad lg:sticky lg:top-5">
+        <div
+          id="worksheet"
+          className="relative overflow-hidden rounded-[3px] border-2 border-ink-900 bg-pad lg:sticky lg:top-5"
+        >
           {/* the pad's red margin rule */}
           <div
             aria-hidden="true"
@@ -507,8 +595,21 @@ export default function LeakCalculator() {
           />
 
           <div className="py-6 pl-[36px] pr-5 md:py-7 md:pl-[52px] md:pr-7">
+            {/* Printed copies only: say what this is and where it came from */}
+            <p className="ws-only mb-4 hidden border-b border-pad-rule pb-3 text-[13px] text-ink-700">
+              Leak worksheet from stabilisiq.com. Figures entered by the
+              reader; see the note at the bottom.
+            </p>
             <p className="text-[14px] font-semibold text-ink-700">
               Worksheet: {scenario.tab.toLowerCase()}
+            </p>
+            <p className="ws-only mt-2 hidden text-[13px] leading-snug text-ink-700">
+              {scenario.fields
+                .map(
+                  (f) =>
+                    `${f.label}: ${f.unit === "$" ? money(v[f.key]) : num(v[f.key])}${f.unit === "%" ? "%" : ""}`,
+                )
+                .join("  /  ")}
             </p>
 
             <ol className="mt-3">
@@ -595,7 +696,7 @@ export default function LeakCalculator() {
               onCost={setFixCost}
             />
 
-            <div className="mt-6 flex flex-col gap-2">
+            <div className="ws-hide mt-6 flex flex-col gap-2">
               <button type="button" onClick={sendWorksheet} className={BUTTON}>
                 Send me this worksheet
               </button>
@@ -608,6 +709,26 @@ export default function LeakCalculator() {
                 Or talk it through for 15 minutes
               </a>
             </div>
+
+            {/* Take it to whoever signs off */}
+            <p className="ws-hide mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-ink-700">
+              <button
+                type="button"
+                onClick={copyLink}
+                className="underline underline-offset-4 hover:text-ink-900"
+              >
+                <span aria-live="polite">
+                  {copied ? "Link copied" : "Copy a link to these numbers"}
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={printWorksheet}
+                className="underline underline-offset-4 hover:text-ink-900"
+              >
+                Print or save as PDF
+              </button>
+            </p>
 
             <p className="mt-4 text-[13px] leading-snug text-ink-500">
               These are your numbers and plain multiplication. I haven&apos;t

@@ -37,6 +37,15 @@ export function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const verticalPath = verticalPathFor(host);
 
+  // www.stabilisiq.com served a full duplicate of the site. Send it to the
+  // bare domain so there is one address for people and search engines.
+  if (host === "www.stabilisiq.com") {
+    return NextResponse.redirect(
+      `https://stabilisiq.com${url.pathname}${url.search}`,
+      308,
+    );
+  }
+
   // Legal / compliance pages live on the operator's main site
   // (stabilisiq.com/sms). If someone hits <vertical>.stabilisiq.com/sms —
   // e.g. a Twilio reviewer following an older link — permanent-redirect

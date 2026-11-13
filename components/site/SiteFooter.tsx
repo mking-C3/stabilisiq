@@ -29,7 +29,9 @@ export default function SiteFooter() {
             links={[
               { href: "/#calculator", label: "Leak calculator" },
               { href: "/#work", label: "Work" },
+              { href: "/playbooks/propane", label: "Propane runbook" },
               { href: "/#how", label: "How I work" },
+              { href: "/#questions", label: "Straight answers" },
               { href: "/about", label: "About Matt" },
               { href: "/contact", label: "Contact" },
             ]}

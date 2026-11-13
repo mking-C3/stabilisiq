@@ -93,3 +93,33 @@ html {
     scroll-behavior: auto;
   }
 }
+
+/* --- Printing the worksheet ---------------------------------------------
+   "Print or save as PDF" in the calculator adds .print-worksheet to <html>
+   for the duration of the print, so these rules only apply to that action. */
+@media print {
+  html.print-worksheet header,
+  html.print-worksheet footer,
+  html.print-worksheet main > section:not(#calculator),
+  html.print-worksheet .ws-hide {
+    display: none !important;
+  }
+  html.print-worksheet .ws-only {
+    display: block !important;
+  }
+  html.print-worksheet #calculator {
+    border: 0 !important;
+    background: #fff !important;
+  }
+  html.print-worksheet #calculator > div {
+    padding: 0 !important;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  html.print-worksheet #worksheet {
+    position: static !important;
+    zoom: 0.82; /* keeps the whole worksheet on one sheet of paper */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

@@ -29,7 +29,7 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main id="main">
         {/* Intro */}
         <section className={`${WRAP} pb-14 pt-12 md:pb-20 md:pt-20`}>
           <div className="grid items-start gap-x-12 gap-y-10 md:grid-cols-12">

@@ -12,6 +12,7 @@ import { CALENDLY_URL, EMAIL, LINK } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
+  alternates: { canonical: "/contact" },
   description:
     "Tell Matt what's leaking. Send a message, or book 15 minutes.",
   openGraph: {
@@ -28,7 +29,7 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-[1120px] px-5 pb-20 pt-12 md:px-8 md:pb-28 md:pt-20">
+      <main id="main" className="mx-auto max-w-[1120px] px-5 pb-20 pt-12 md:px-8 md:pb-28 md:pt-20">
         <div className="grid gap-x-12 gap-y-10 md:grid-cols-12">
           <div className="md:col-span-5">
             <h1 className="font-head text-[40px] font-bold leading-[1.06] tracking-[-0.02em] sm:text-[52px]">
