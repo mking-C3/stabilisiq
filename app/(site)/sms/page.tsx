@@ -1,6 +1,6 @@
 import Link from "next/link";
-import MarketingNav from "@/components/marketing/MarketingNav";
-import MarketingFooter from "@/components/marketing/MarketingFooter";
+import SiteHeader from "@/components/site/SiteHeader";
+import SiteFooter from "@/components/site/SiteFooter";
 
 // ─── LEGAL / OPERATOR CONSTANTS ──────────────────────────────────────────
 // Reviewed / referenced by Twilio during toll-free verification.
@@ -17,36 +17,36 @@ const LAST_UPDATED = "December 2, 2026";
 
 export default function SmsTermsPage() {
   return (
-    <main className="min-h-screen bg-ink-900 text-paper">
-      <MarketingNav calendlyUrl={CALENDLY_URL} />
+    <main className="min-h-screen">
+      <SiteHeader />
 
       <article className="mx-auto max-w-3xl px-5 py-14 md:py-20">
         <div className="mb-6 flex items-center justify-between">
           <Link
             href="/"
-            className="text-[15px] text-ink-300 hover:text-paper transition inline-flex items-center gap-1.5"
+            className="text-[15px] text-ink-500 hover:text-ink-900 transition inline-flex items-center gap-1.5"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
             Back to StabilisIQ
           </Link>
-          <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink-400">
+          <span className="text-[14px] text-ink-500">
             Last updated: {LAST_UPDATED}
           </span>
         </div>
 
         {/* Title */}
         <div className="mb-12">
-          <p className="font-mono text-[13px] uppercase tracking-[0.2em] text-siq-light font-semibold mb-4">
+          <p className="text-[15px] font-semibold text-ink-500 mb-4">
             SMS Terms & Consent
           </p>
-          <h1 className="font-display text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05]">
+          <h1 className="font-head text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05]">
             Text Messaging Terms
           </h1>
-          <p className="mt-5 text-[18px] text-ink-200 leading-[1.6]">
+          <p className="mt-5 text-[18px] text-ink-700 leading-[1.6]">
             These terms describe how the automated text messaging service at{" "}
-            <a href={`sms:${SMS_NUMBER_E164}`} className="text-siq-light underline underline-offset-4">
+            <a href={`sms:${SMS_NUMBER_E164}`} className="text-ink-900 underline underline-offset-4">
               {SMS_NUMBER_DISPLAY}
             </a>{" "}
             works, how you consent to receive messages, and how to stop them at
@@ -55,7 +55,7 @@ export default function SmsTermsPage() {
         </div>
 
         {/* Body sections */}
-        <div className="space-y-10 text-[17px] leading-[1.7] text-ink-200">
+        <div className="space-y-10 text-[17px] leading-[1.7] text-ink-700">
 
           <Section title="About the service">
             <p>
@@ -65,7 +65,7 @@ export default function SmsTermsPage() {
               missed-call-text-back product — publicly shown at{" "}
               <a
                 href="https://hvac.stabilisiq.com"
-                className="text-siq-light underline underline-offset-4"
+                className="text-ink-900 underline underline-offset-4"
               >
                 hvac.stabilisiq.com
               </a>{" "}
@@ -84,9 +84,9 @@ export default function SmsTermsPage() {
             <p>
               You opt in to receive text messages from us in one of two ways:
             </p>
-            <ol className="mt-3 space-y-3 list-decimal pl-6 marker:text-siq-light marker:font-semibold">
+            <ol className="mt-3 space-y-3 list-decimal pl-6 marker:text-ink-500 marker:font-semibold">
               <li>
-                <strong className="text-paper font-semibold">
+                <strong className="text-ink-900 font-semibold">
                   You call {SMS_NUMBER_DISPLAY} and the call is not answered.
                 </strong>{" "}
                 A single automated reply is sent to the number you called from,
@@ -95,7 +95,7 @@ export default function SmsTermsPage() {
                 promotional message.
               </li>
               <li>
-                <strong className="text-paper font-semibold">
+                <strong className="text-ink-900 font-semibold">
                   You reply to the initial text.
                 </strong>{" "}
                 Your reply constitutes consent to continue the conversation.
@@ -111,7 +111,7 @@ export default function SmsTermsPage() {
           </Section>
 
           <Section title="What to expect">
-            <ul className="mt-2 space-y-2.5 list-disc pl-6 marker:text-siq-light">
+            <ul className="mt-2 space-y-2.5 list-disc pl-6 marker:text-ink-500">
               <li>An initial automated reply within roughly 5 seconds of a missed call</li>
               <li>Short conversational follow-ups asking about your service issue</li>
               <li>Two proposed appointment windows for you to choose from</li>
@@ -139,7 +139,7 @@ export default function SmsTermsPage() {
 
           <Section title="How to opt out">
             <p>
-              Reply <strong className="text-paper font-semibold">STOP</strong>{" "}
+              Reply <strong className="text-ink-900 font-semibold">STOP</strong>{" "}
               to any message from us to opt out at any time. You will receive
               a single final confirmation message acknowledging that you have
               been unsubscribed, and no further messages will be sent to your
@@ -152,12 +152,12 @@ export default function SmsTermsPage() {
 
           <Section title="How to get help">
             <p>
-              Reply <strong className="text-paper font-semibold">HELP</strong>{" "}
+              Reply <strong className="text-ink-900 font-semibold">HELP</strong>{" "}
               to any message from us for assistance. You will receive a reply
               with our contact information. You can also email us directly at{" "}
               <a
                 href={`mailto:${OPERATOR_EMAIL}`}
-                className="text-siq-light underline underline-offset-4"
+                className="text-ink-900 underline underline-offset-4"
               >
                 {OPERATOR_EMAIL}
               </a>
@@ -166,7 +166,7 @@ export default function SmsTermsPage() {
           </Section>
 
           <Section title="Sample messages">
-            <p className="text-ink-300 text-[15px] italic mb-3">
+            <p className="text-ink-500 text-[15px] italic mb-3">
               Below are representative examples of messages you may receive.
               Exact wording varies.
             </p>
@@ -205,12 +205,12 @@ export default function SmsTermsPage() {
 
           <Section title="Operator">
             <p>
-              <strong className="text-paper font-semibold">{OPERATOR_LEGAL_NAME}</strong>
+              <strong className="text-ink-900 font-semibold">{OPERATOR_LEGAL_NAME}</strong>
               <br />
               Website:{" "}
               <a
                 href={OPERATOR_WEBSITE}
-                className="text-siq-light underline underline-offset-4"
+                className="text-ink-900 underline underline-offset-4"
               >
                 {OPERATOR_WEBSITE}
               </a>
@@ -218,7 +218,7 @@ export default function SmsTermsPage() {
               Email:{" "}
               <a
                 href={`mailto:${OPERATOR_EMAIL}`}
-                className="text-siq-light underline underline-offset-4"
+                className="text-ink-900 underline underline-offset-4"
               >
                 {OPERATOR_EMAIL}
               </a>
@@ -236,20 +236,20 @@ export default function SmsTermsPage() {
         </div>
 
         {/* End-of-page marker */}
-        <div className="mt-16 pt-8 border-t border-paper/10 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+        <div className="mt-16 pt-8 border-t border-ink-900/25 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 rounded-full bg-paper hover:bg-white transition-colors px-5 py-2.5 text-[15px] font-semibold text-ink-900"
+            className="inline-flex items-center gap-2 rounded-[3px] border-2 border-ink-900 bg-ink-900 hover:bg-hl hover:text-ink-900 transition-colors px-5 py-2.5 text-[15px] font-medium text-white"
           >
             Back to StabilisIQ
           </Link>
-          <span className="font-mono text-[12px] uppercase tracking-[0.18em] text-ink-400">
+          <span className="text-[14px] text-ink-500">
             {OPERATOR_LEGAL_NAME} · {LAST_UPDATED}
           </span>
         </div>
       </article>
 
-      <MarketingFooter />
+      <SiteFooter />
     </main>
   );
 }
@@ -263,7 +263,7 @@ function Section({
 }) {
   return (
     <section>
-      <h2 className="font-display text-2xl md:text-[28px] font-bold tracking-tight text-paper mb-4">
+      <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4">
         {title}
       </h2>
       <div className="space-y-3">{children}</div>
@@ -273,7 +273,7 @@ function Section({
 
 function SampleMessage({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-ink-800 border border-paper/10 rounded-lg px-4 py-3 text-[16px] text-ink-100 leading-relaxed">
+    <div className="bg-white border border-ink-900/25 rounded-[3px] px-4 py-3 text-[16px] text-ink-900 leading-relaxed">
       {children}
     </div>
   );

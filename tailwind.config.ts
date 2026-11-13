@@ -50,6 +50,22 @@ const config: Config = {
           100: "#EAEDF1",
           50: "#F5F7F9",
         },
+        // ─── STABILISIQ.COM (2026 redesign) ────────────────────────────
+        // The main site is styled like a printed estimate: paper, ink, a
+        // yellow highlighter, and a legal pad for the worksheet. Red and
+        // green appear ONLY on figures (money leaving / money recovered).
+        sheet: {
+          DEFAULT: "#F8F6F0", // page
+          deep: "#EFECE2",    // alternate band
+          rule: "#D8D2C2",    // hairlines on paper
+        },
+        pad: {
+          DEFAULT: "#FFF7CC", // legal pad
+          rule: "#E6D99A",    // ruled lines on the pad
+        },
+        hl: "#FFE14F",        // highlighter
+        leak: "#B3261E",      // money leaving
+        kept: "#1B6B45",      // money recovered
         // Reserved for the missed-call pain visual ONLY.
         alarm: "#E11D2A",
         // iMessage-style blue for the bot's bubbles in the demo.
@@ -74,6 +90,7 @@ const config: Config = {
           "Arial",
           "sans-serif",
         ],
+        head: ["var(--font-head)", "Georgia", "Times New Roman", "serif"],
         mono: [
           "var(--font-mono)",
           "ui-monospace",

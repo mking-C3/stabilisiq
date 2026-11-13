@@ -1,33 +1,21 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-// Geometric, neutral, operator-feel. Variable weights give us range across
-// the whole site — Display weights at hero scale, regular for body, mono
-// for technical labels and numerals.
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-  axes: ["opsz"],
-});
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
-
-// Universal root. Per-site metadata lives in nested layouts (app/hvac/layout.tsx, etc).
-// The actual <title> and OG tags get set by whichever sub-layout matches the route.
+// Universal root. It only owns <html>/<body> and the fallback metadata.
+// Fonts and page chrome are set one level down, because this app serves
+// three differently-styled sites:
+//   app/(site)/*      stabilisiq.com          (lib/fonts-site.ts)
+//   app/hvac/*        hvac.stabilisiq.com     (lib/fonts-vertical.ts)
+//   app/locksmith/*   locksmith.stabilisiq.com
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://stabilisiq.com"),
   title: {
-    default: "StabilisIQ — Fix what's broken. Automate what shouldn't break again.",
+    default: "StabilisIQ: find the leak in your operation and fix it",
     template: "%s — StabilisIQ",
   },
   description:
-    "We fix broken operations and build the automations that keep them fixed. Managed engagements when you need a fixer; productized builds when you want it to stick.",
+    "Missed calls, slow quotes, work done twice, jobs that never get billed. StabilisIQ fixes the leak and builds the automation that keeps it fixed. Work out what yours costs.",
 };
 
 export const viewport = {
@@ -41,11 +29,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${jetbrains.variable} antialiased`}
-    >
-      <body className="font-sans bg-ink-900 text-paper">{children}</body>
+    <html lang="en" className="antialiased">
+      <body>{children}</body>
     </html>
   );
 }

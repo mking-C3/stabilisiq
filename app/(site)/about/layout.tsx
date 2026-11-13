@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Who I am — Matt at StabilisIQ",
+  title: "About Matt King",
   description:
-    "I run StabilisIQ. I focus on process improvement and operational efficiency — but the part that matters is that I do the work.",
+    "Matt King runs StabilisIQ. Process improvement and operational efficiency, done rather than recommended.",
   openGraph: {
-    title: "Who I am — Matt at StabilisIQ",
+    title: "About Matt King, StabilisIQ",
     description:
-      "Operations partner. Builder. Operator of record at StabilisIQ.",
+      "Matt King runs StabilisIQ. Process improvement and operational efficiency, done rather than recommended.",
     type: "profile",
     url: "https://stabilisiq.com/about",
   },

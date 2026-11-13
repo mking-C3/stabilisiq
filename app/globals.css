@@ -30,3 +30,66 @@ html {
 .scroll-hidden {
   scrollbar-width: none;
 }
+
+/* ─── stabilisiq.com ─────────────────────────────────────────────────── */
+
+/* Highlighter: a marker stroke across the lower half of the words, the way
+   someone marks up a printout. Used a handful of times, never per section. */
+.hl {
+  background-image: linear-gradient(
+    180deg,
+    transparent 0 52%,
+    #ffe14f 52% 94%,
+    transparent 94%
+  );
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: 0 0.08em;
+  color: inherit;
+}
+
+/* Worksheet sliders. Native range inputs, restyled so the track reads as a
+   ruled line and the thumb as a square tab. */
+.siq-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+.siq-range::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #0b0d10;
+}
+.siq-range::-moz-range-track {
+  height: 2px;
+  background: #0b0d10;
+}
+.siq-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -8px;
+  background: #ffe14f;
+  border: 2px solid #0b0d10;
+  border-radius: 2px;
+}
+.siq-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #ffe14f;
+  border: 2px solid #0b0d10;
+  border-radius: 2px;
+}
+.siq-range:focus-visible {
+  outline: 2px solid #0b0d10;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

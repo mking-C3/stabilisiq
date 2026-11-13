@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SMS_CONSENT_TEXT } from "@/lib/consent";
+import { WORKSHEET_KEY } from "@/lib/site";
 
 // Contact form with a CTIA-compliant SMS opt-in checkbox.
 //
@@ -15,27 +16,44 @@ import { SMS_CONSENT_TEXT } from "@/lib/consent";
 //     also what gets stored, so displayed and recorded text cannot drift.
 //
 // Mounted on: hvac.stabilisiq.com, locksmith.stabilisiq.com (orange accent,
-// matching the vertical product pages) and stabilisiq.com/contact (blue,
-// matching the main site). Only the accent colour differs between them —
-// the fields, the checkbox behaviour and the consent wording are identical.
+// matching the vertical product pages) and stabilisiq.com/contact ("ink":
+// square black-on-paper, matching the main site). Only colour and corner
+// radius differ between them — the fields, the checkbox behaviour and the
+// consent wording are identical.
 
-type AccentColor = "orange" | "blue";
+type AccentColor = "orange" | "blue" | "ink";
 
 const THEME: Record<
   AccentColor,
-  { field: string; check: string; link: string; button: string }
+  {
+    card: string;
+    field: string;
+    check: string;
+    link: string;
+    button: string;
+  }
 > = {
   orange: {
+    card: "rounded-2xl border border-ink-100 shadow-sm",
     field: "focus:border-accent focus:ring-accent",
     check: "accent-accent focus:ring-accent",
     link: "text-accent hover:text-accent-dark",
-    button: "bg-accent hover:bg-accent-dark",
+    button: "rounded-full text-white bg-accent hover:bg-accent-dark",
   },
   blue: {
+    card: "rounded-2xl border border-ink-100 shadow-sm",
     field: "focus:border-siq focus:ring-siq",
     check: "accent-siq focus:ring-siq",
     link: "text-siq hover:text-siq-dark",
-    button: "bg-siq hover:bg-siq-dark",
+    button: "rounded-full text-white bg-siq hover:bg-siq-dark",
+  },
+  ink: {
+    card: "rounded-[3px] border-2 border-ink-900",
+    field: "focus:border-ink-900 focus:ring-ink-900",
+    check: "accent-ink-900 focus:ring-ink-900",
+    link: "text-ink-900 hover:bg-hl",
+    button:
+      "rounded-[3px] border-2 border-ink-900 text-white bg-ink-900 hover:bg-hl hover:text-ink-900",
   },
 };
 
@@ -61,6 +79,22 @@ export default function ContactForm({
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
   const [sentWithConsent, setSentWithConsent] = useState(false);
+
+  // If the visitor came here from the leak calculator, it left a plain-text
+  // copy of their worksheet in sessionStorage. Drop it into the message box
+  // so they don't retype it. This touches the message field ONLY — never the
+  // consent checkbox — and nothing is sent until they press the button.
+  useEffect(() => {
+    try {
+      const worksheet = window.sessionStorage.getItem(WORKSHEET_KEY);
+      if (worksheet) {
+        setMessage((current) => current || worksheet);
+        window.sessionStorage.removeItem(WORKSHEET_KEY);
+      }
+    } catch {
+      // Storage unavailable: the form simply starts empty.
+    }
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -134,7 +168,7 @@ export default function ContactForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative rounded-2xl border border-ink-100 bg-white p-6 md:p-8 shadow-sm"
+      className={`relative bg-white p-6 md:p-8 ${t.card}`}
       noValidate
     >
       {/* Honeypot — visually hidden but still fillable by bots */}
@@ -268,7 +302,7 @@ export default function ContactForm({
         <button
           type="submit"
           disabled={status === "sending"}
-          className={`inline-flex items-center justify-center gap-2 rounded-full disabled:bg-ink-300 transition-colors px-7 py-3.5 text-base font-semibold text-white active:scale-[0.98] ${t.button}`}
+          className={`inline-flex items-center justify-center gap-2 disabled:bg-ink-300 disabled:border-ink-300 disabled:text-white transition-colors px-7 py-3.5 text-base font-semibold active:scale-[0.98] ${t.button}`}
         >
           {status === "sending" ? "Sending…" : "Send message"}
           {status !== "sending" && (

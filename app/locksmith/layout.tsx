@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { inter, jetbrains } from "@/lib/fonts-vertical";
 
 export const metadata: Metadata = {
   title: "Never miss a lockout again — Locksmith Missed Call Text Back",
@@ -22,5 +23,9 @@ export default function LocksmithLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <div className={`${inter.variable} ${jetbrains.variable} font-sans`}>
+      {children}
+    </div>
+  );
 }

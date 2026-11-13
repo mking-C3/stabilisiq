@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { inter, jetbrains } from "@/lib/fonts-vertical";
 
 export const metadata: Metadata = {
   title: "Never miss a job again — HVAC Missed Call Text Back",
@@ -22,5 +23,9 @@ export default function HvacLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <div className={`${inter.variable} ${jetbrains.variable} font-sans`}>
+      {children}
+    </div>
+  );
 }
