@@ -41,6 +41,15 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
   } | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // The clock time in the thread header is filled in after mount. Rendering
+  // it during server rendering bakes the build machine's time into the HTML,
+  // which never matches the visitor's clock and makes React throw hydration
+  // errors (and re-render the whole page) on load.
+  const [startedAt, setStartedAt] = useState<string | null>(null);
+  useEffect(() => {
+    setStartedAt(formatTime(Date.now()));
+  }, []);
+
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
@@ -159,7 +168,7 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
             className="scroll-hidden h-[440px] overflow-y-auto px-3 py-3 bg-white"
           >
             <div className="text-center text-[10px] uppercase tracking-wider text-ink-400 mb-3">
-              Text Message · Today {formatTime(messages[0].ts)}
+              Text Message · Today{startedAt ? ` ${startedAt}` : ""}
             </div>
             <div className="flex flex-col gap-1.5">
               {messages.map((m, i) => {
@@ -309,7 +318,7 @@ export default function Demo({ vertical }: { vertical: Vertical }) {
           clears. To restore: swap this block back to the sms: link using
           demo.phoneSms / demo.phoneDisplay (still set in lib/verticals.ts). */}
       <div className="mt-6 text-center">
-        <p className="text-sm text-ink-400 uppercase tracking-wider">
+        <p className="text-sm text-ink-500 uppercase tracking-wider">
           Want the full experience?
         </p>
         <p className="mt-2 inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm text-ink-500">
