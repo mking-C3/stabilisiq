@@ -54,7 +54,12 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect("https://stabilisiq.com/sms", 301);
   }
 
-  if (verticalPath) {
+  // Files at the site root (icon.svg, apple-icon.png, share.png, images in
+  // /public) are shared by every hostname. Rewriting them under /hvac or
+  // /locksmith made the favicon 404 on the vertical sites.
+  const isRootFile = /\.[a-z0-9]+$/i.test(url.pathname);
+
+  if (verticalPath && !isRootFile) {
     const alreadyRewritten = url.pathname.startsWith(verticalPath);
     if (!alreadyRewritten) {
       url.pathname =
