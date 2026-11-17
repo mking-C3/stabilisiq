@@ -16,10 +16,13 @@
 
 export const SMS_CONSENT_TEXT =
   "By checking this box, I agree to receive text messages from StabilisIQ at " +
-  "the phone number provided, including appointment updates and replies to my " +
-  "inquiry. Message frequency varies. Message and data rates may apply. Reply " +
-  "HELP for help or STOP to opt out. See our Privacy Policy and Terms.";
+  "the phone number provided, including replies to my inquiry, scheduling " +
+  "messages, and demo texts I request. Message frequency varies. Message and " +
+  "data rates may apply. Reply HELP for help or STOP to opt out. See our " +
+  "Privacy Policy and Terms of Service.";
 
 // Version tag stored alongside each record so you can group submissions by
 // which wording they saw. Bump when SMS_CONSENT_TEXT materially changes.
-export const SMS_CONSENT_VERSION = "2026-12-02.v1";
+// History: "2026-12-02.v1" (mis-dated tag, live Aug–Nov 2026) said
+// "including appointment updates and replies to my inquiry ... Terms."
+export const SMS_CONSENT_VERSION = "2026-11-17.v2";

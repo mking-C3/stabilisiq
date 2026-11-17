@@ -67,9 +67,25 @@ export async function POST(req: NextRequest) {
   // accidentally enroll someone for texting.
   const smsConsent = b.sms_consent === true;
 
-  if (!name || !phone || !message) {
+  if (!name || !message) {
     return NextResponse.json(
-      { error: "Name, phone number, and a message are all required." },
+      { error: "Please add your name and a message." },
+      { status: 400 },
+    );
+  }
+
+  // Phone is optional: carrier reviewers treat a required phone field next to
+  // an SMS opt-in as forced enrollment. We still need a way to reply, and a
+  // number to text if (and only if) the visitor ticked the SMS box.
+  if (smsConsent && !phone) {
+    return NextResponse.json(
+      { error: "Add a phone number so we can text you, or untick the box." },
+      { status: 400 },
+    );
+  }
+  if (!phone && !email) {
+    return NextResponse.json(
+      { error: "Add a phone number or an email so we can reply." },
       { status: 400 },
     );
   }
@@ -77,7 +93,7 @@ export async function POST(req: NextRequest) {
   // Digits-only sanity check. Deliberately permissive on formatting — the
   // goal is to catch typos, not to reject valid international numbers.
   const digits = phone.replace(/\D/g, "");
-  if (digits.length < 10 || digits.length > 15) {
+  if (phone && (digits.length < 10 || digits.length > 15)) {
     return NextResponse.json(
       { error: "That phone number doesn't look right. Please check it." },
       { status: 400 },

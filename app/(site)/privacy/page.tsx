@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
         <div className="mx-auto max-w-3xl px-5">
 
             <h1 className="font-head text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05] mb-3">Privacy Policy</h1>
-            <p className="text-[15px] text-ink-500 mb-12">Last Updated: January 17, 2026</p>
+            <p className="text-[15px] text-ink-500 mb-12">Last Updated: November 17, 2026</p>
 
             <div className="space-y-10">
               <section>
@@ -64,6 +64,15 @@ export default function PrivacyPolicyPage() {
                   <li>Contact information for authorized client personnel</li>
                   <li>Other information as defined in your service agreement</li>
                 </ul>
+
+                <h3 className="font-head text-lg md:text-xl font-semibold tracking-tight text-ink-900 mt-8 mb-3">2.3 Text Messaging (SMS)</h3>
+                <p className="text-[17px] text-ink-700 leading-[1.7] mb-4">
+                  If you tick the optional SMS box on our contact form, or text our number at (888) 913-2301, we collect your mobile number, the content of the messages we exchange, and a record of your consent (the time, the wording you agreed to, and the page it was given on). We use this information only to run our text messaging program: to reply to your inquiry, arrange a time to talk, and send demo messages you asked to see. You can opt out at any time by replying STOP. Full program details are in our{" "}
+                  <a href="/sms" className="underline underline-offset-4">SMS Terms</a>.
+                </p>
+                <p className="text-[17px] text-ink-700 leading-[1.7]">
+                  We do not sell, rent, or share mobile numbers or SMS consent with anyone for marketing purposes. Text messaging originator opt-in data and consent will not be shared with any third parties.
+                </p>
               </section>
 
               <section>
@@ -92,6 +101,9 @@ export default function PrivacyPolicyPage() {
                   <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction, subject to applicable confidentiality obligations.</li>
                   <li><strong>With Your Consent:</strong> We may share information with your express consent or at your direction.</li>
                 </ul>
+                <p className="text-[17px] text-ink-700 leading-[1.7] mt-4">
+                  All the above categories exclude text messaging originator opt-in data and consent; this information won&apos;t be shared with any third parties.
+                </p>
               </section>
 
               <section>

@@ -1,18 +1,20 @@
 import Link from "next/link";
 import SiteHeader from "@/components/site/SiteHeader";
 import SiteFooter from "@/components/site/SiteFooter";
+import { SMS_CONSENT_TEXT } from "@/lib/consent";
 
 // ─── LEGAL / OPERATOR CONSTANTS ──────────────────────────────────────────
-// Reviewed / referenced by Twilio during toll-free verification.
-// If any of these change, update this page.
+// Reviewed / referenced by Twilio during toll-free verification. The opt-in
+// URL submitted to Twilio is /contact (where the checkbox lives); this page
+// is the full SMS program terms linked from that form. If anything here
+// changes, check it still matches the verification submission.
 const OPERATOR_LEGAL_NAME = "StabilisIQ LLC";
+const PROGRAM_NAME = "StabilisIQ";
 const OPERATOR_EMAIL = "matt@stabilisiq.com";
 const OPERATOR_WEBSITE = "https://stabilisiq.com";
-const CALENDLY_URL = "https://calendly.com/matt-stabilisiq/30min";
 const SMS_NUMBER_DISPLAY = "(888) 913-2301";
 const SMS_NUMBER_E164 = "+18889132301";
-const BRAND_ON_SMS = "Mike's HVAC"; // What the sender identifies as in messages
-const LAST_UPDATED = "December 2, 2026";
+const LAST_UPDATED = "November 17, 2026";
 // ─────────────────────────────────────────────────────────────────────────
 
 export default function SmsTermsPage() {
@@ -45,95 +47,94 @@ export default function SmsTermsPage() {
             Text Messaging Terms
           </h1>
           <p className="mt-5 text-[18px] text-ink-700 leading-[1.6]">
-            These terms describe how the automated text messaging service at{" "}
+            These terms cover text messages sent by {PROGRAM_NAME} from{" "}
             <a href={`sms:${SMS_NUMBER_E164}`} className="text-ink-900 underline underline-offset-4">
               {SMS_NUMBER_DISPLAY}
-            </a>{" "}
-            works, how you consent to receive messages, and how to stop them at
-            any time.
+            </a>
+            : how you agree to receive them, what we send, and how to stop
+            them at any time.
           </p>
         </div>
 
         {/* Body sections */}
         <div className="space-y-10 text-[17px] leading-[1.7] text-ink-700">
 
-          <Section title="About the service">
+          <Section title="About the program">
             <p>
-              {OPERATOR_LEGAL_NAME} (&quot;we,&quot; &quot;us&quot;) operates
-              an automated text-back service at {SMS_NUMBER_DISPLAY}. The
-              number is used as the live demo line for our HVAC
-              missed-call-text-back product — publicly shown at{" "}
-              <a
-                href="https://hvac.stabilisiq.com"
-                className="text-ink-900 underline underline-offset-4"
-              >
-                hvac.stabilisiq.com
-              </a>{" "}
-              — where the automated assistant identifies itself as{" "}
-              &quot;{BRAND_ON_SMS}&quot; for demonstration purposes.
+              {OPERATOR_LEGAL_NAME} (&quot;{PROGRAM_NAME},&quot; &quot;we,&quot;
+              &quot;us&quot;) is a small automation consultancy. {SMS_NUMBER_DISPLAY}{" "}
+              is our own customer-care text line. We use it to reply to people
+              who contact us, to arrange a time to talk, and to show live
+              demos of the text-message tools we build, when you ask to see
+              one.
             </p>
             <p className="mt-3">
-              This is a &quot;missed call text back&quot; service — when a
-              caller reaches the number and the call goes unanswered, an
-              automated SMS reply is sent to that caller&apos;s phone within a
-              few seconds to continue the conversation over text.
+              Every message we send names {PROGRAM_NAME}. Demo messages start
+              with &quot;{PROGRAM_NAME} demo&quot; so it is always clear that
+              you are looking at an example and who it is from. We do not send
+              marketing or promotional texts.
             </p>
           </Section>
 
           <Section title="How you opt in">
-            <p>
-              You opt in to receive text messages from us in one of two ways:
-            </p>
+            <p>You only receive texts from us in one of these two ways:</p>
             <ol className="mt-3 space-y-3 list-decimal pl-6 marker:text-ink-500 marker:font-semibold">
               <li>
                 <strong className="text-ink-900 font-semibold">
-                  You call {SMS_NUMBER_DISPLAY} and the call is not answered.
+                  You tick the SMS box on our{" "}
+                  <Link href="/contact" className="underline underline-offset-4">
+                    contact form
+                  </Link>
+                  .
                 </strong>{" "}
-                A single automated reply is sent to the number you called from,
-                acknowledging the missed call and asking how we can help. This
-                initial reply is a direct response to your call, not a
-                promotional message.
+                The box is optional and starts unticked. You can send the form
+                without it, and if you do we will reply by email or phone
+                instead. The text beside the box reads:
+                <blockquote className="mt-3 border-l-2 border-ink-900/40 pl-4 text-[16px] text-ink-900">
+                  {SMS_CONSENT_TEXT}
+                </blockquote>
               </li>
               <li>
                 <strong className="text-ink-900 font-semibold">
-                  You reply to the initial text.
+                  You text {SMS_NUMBER_DISPLAY} first.
                 </strong>{" "}
-                Your reply constitutes consent to continue the conversation.
-                Further messages from us (asking about your issue, offering
-                appointment times, confirming a booking) will follow as part of
-                that conversation until it concludes or you opt out.
+                If you send us a text, we reply to that conversation only. We
+                will not start sending you other messages because you texted
+                us.
               </li>
             </ol>
             <p className="mt-4">
-              We do not send unsolicited messages. If you have never called our
-              number, you will not receive a text from us.
+              We never buy, rent or borrow phone numbers. If you have not done
+              one of the two things above, you will not get a text from us.
             </p>
           </Section>
 
-          <Section title="What to expect">
+          <Section title="What we send">
             <ul className="mt-2 space-y-2.5 list-disc pl-6 marker:text-ink-500">
-              <li>An initial automated reply within roughly 5 seconds of a missed call</li>
-              <li>Short conversational follow-ups asking about your service issue</li>
-              <li>Two proposed appointment windows for you to choose from</li>
-              <li>A confirmation once an appointment is booked</li>
-              <li>A follow-up from a technician to confirm details, if applicable</li>
+              <li>Replies to your message or question</li>
+              <li>Messages to set up a call or meeting time</li>
+              <li>
+                Demo texts you have asked to see, such as a sample missed-call
+                reply or a sample delay alert, each labelled &quot;{PROGRAM_NAME}{" "}
+                demo&quot;
+              </li>
+              <li>A one-time confirmation when you opt in</li>
             </ul>
           </Section>
 
           <Section title="Message frequency">
             <p>
-              Message frequency varies based on the conversation. A typical
-              interaction is 3 to 8 messages, sent within a single window of a
-              few minutes to a few hours. We do not send recurring or scheduled
-              marketing messages.
+              Message frequency varies. Messages are sent only in response to
+              your inquiry or a demo you asked for, usually a handful of
+              messages within a single conversation. We do not send recurring
+              or scheduled marketing messages.
             </p>
           </Section>
 
           <Section title="Message and data rates">
             <p>
-              Message and data rates may apply. Standard messaging rates from
-              your mobile carrier apply to every message you send and receive.
-              We do not charge you for messages; your carrier may.
+              Message and data rates may apply. We do not charge you for
+              messages; your mobile carrier may.
             </p>
           </Section>
 
@@ -141,20 +142,17 @@ export default function SmsTermsPage() {
             <p>
               Reply <strong className="text-ink-900 font-semibold">STOP</strong>{" "}
               to any message from us to opt out at any time. You will receive
-              a single final confirmation message acknowledging that you have
-              been unsubscribed, and no further messages will be sent to your
-              number.
-            </p>
-            <p className="mt-3">
-              To opt back in later, simply call {SMS_NUMBER_DISPLAY} again.
+              one final message confirming that you have been unsubscribed, and
+              no further messages will be sent to your number. To opt back in,
+              reply <strong className="text-ink-900 font-semibold">START</strong>{" "}
+              or tick the box on our contact form again.
             </p>
           </Section>
 
           <Section title="How to get help">
             <p>
               Reply <strong className="text-ink-900 font-semibold">HELP</strong>{" "}
-              to any message from us for assistance. You will receive a reply
-              with our contact information. You can also email us directly at{" "}
+              to any message from us for assistance, or email{" "}
               <a
                 href={`mailto:${OPERATOR_EMAIL}`}
                 className="text-ink-900 underline underline-offset-4"
@@ -167,39 +165,59 @@ export default function SmsTermsPage() {
 
           <Section title="Sample messages">
             <p className="text-ink-500 text-[15px] italic mb-3">
-              Below are representative examples of messages you may receive.
-              Exact wording varies.
+              Representative examples. Exact wording varies.
             </p>
             <div className="space-y-3">
               <SampleMessage>
-                Hey, this is Mike&apos;s HVAC — sorry we missed your call! I
-                can get you sorted right here over text. What&apos;s going on?
+                StabilisIQ: Thanks, you&apos;re opted in to texts from
+                StabilisIQ about your inquiry and any demo you request. Msg
+                frequency varies. Msg &amp; data rates may apply. Reply HELP
+                for help, STOP to opt out.
               </SampleMessage>
               <SampleMessage>
-                Sounds like an AC issue. Is it blowing warm air, or nothing at
-                all?
+                StabilisIQ: Hi Dana, thanks for your message about missed
+                calls. Matt here. Does Thursday at 2pm work for a 15-minute
+                call? Reply STOP to opt out.
               </SampleMessage>
               <SampleMessage>
-                Got it. I can get a tech out today between 2pm–4pm, or tomorrow
-                morning 8am–10am. Which works?
+                StabilisIQ demo: Sorry we missed your call! This is the sample
+                text-back for a home-services shop. What&apos;s going on with
+                your system? Reply STOP to opt out.
               </SampleMessage>
               <SampleMessage>
-                You&apos;re confirmed for today, 2pm–4pm. A tech will call you
-                on the way to confirm. Reply STOP to opt out of future
-                messages.
+                StabilisIQ demo: Sample trip alert: Trip 4471 is running about
+                30 min late due to traffic. New arrival 3:45pm. Reply STOP to
+                opt out.
               </SampleMessage>
             </div>
           </Section>
 
-          <Section title="How we use your information">
+          <Section title="Your information">
             <p>
-              We use the phone number you called from and the content of your
-              text messages solely to respond to your inquiry and to schedule
-              a service appointment. We do not sell, rent, or share your
-              information with third parties for marketing purposes. No mobile
-              opt-in data — including phone numbers or consent records — will
-              be shared with third parties or affiliates for marketing or
-              promotional purposes.
+              We use your phone number and the content of your messages only
+              to run this text program: to reply to you, arrange a time to
+              talk, and send demos you asked for. We do not sell, rent or share
+              your information for marketing. All the above categories exclude
+              text messaging originator opt-in data and consent; this
+              information won&apos;t be shared with any third parties.
+            </p>
+            <p className="mt-3">
+              See our{" "}
+              <Link href="/privacy" className="text-ink-900 underline underline-offset-4">
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link href="/terms" className="text-ink-900 underline underline-offset-4">
+                Terms of Service
+              </Link>{" "}
+              for more.
+            </p>
+          </Section>
+
+          <Section title="Carrier disclaimer">
+            <p>
+              Wireless carriers are not liable for delayed or undelivered
+              messages.
             </p>
           </Section>
 
@@ -222,6 +240,8 @@ export default function SmsTermsPage() {
               >
                 {OPERATOR_EMAIL}
               </a>
+              <br />
+              Text line: {SMS_NUMBER_DISPLAY}
             </p>
           </Section>
 

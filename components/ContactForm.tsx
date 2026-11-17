@@ -101,6 +101,20 @@ export default function ContactForm({
     if (status === "sending") return;
 
     setError(null);
+
+    // Phone is optional (a required phone field reads as forced SMS
+    // enrollment to carrier reviewers), but we need some way to reply, and a
+    // number to text if the visitor ticked the SMS box. /api/contact enforces
+    // the same rules; this just answers faster.
+    if (smsConsent && !phone.trim()) {
+      setError("Add a phone number so we can text you, or untick the box.");
+      return;
+    }
+    if (!phone.trim() && !email.trim()) {
+      setError("Add a phone number or an email so we can reply.");
+      return;
+    }
+
     setStatus("sending");
 
     try {
@@ -202,7 +216,7 @@ export default function ContactForm({
         <Field
           id="phone"
           label="Phone number"
-          required
+          optional
           type="tel"
           value={phone}
           onChange={setPhone}
@@ -262,12 +276,15 @@ export default function ContactForm({
             className="text-[13px] leading-relaxed text-ink-700 cursor-pointer select-none"
           >
             By checking this box, I agree to receive text messages from
-            StabilisIQ at the phone number provided, including appointment
-            updates and replies to my inquiry. Message frequency varies.
-            Message and data rates may apply. Reply HELP for help or STOP to
-            opt out. See our{" "}
+            StabilisIQ at the phone number provided, including replies to my
+            inquiry, scheduling messages, and demo texts I request. Message
+            frequency varies. Message and data rates may apply. Reply HELP for
+            help or STOP to opt out. See our{" "}
+            {/* Absolute URLs: /privacy and /terms only exist on the main
+                domain, and this form is also mounted on the hvac. and
+                locksmith. subdomains. */}
             <a
-              href="/privacy"
+              href="https://stabilisiq.com/privacy"
               target="_blank"
               rel="noopener noreferrer"
               className={`font-semibold underline underline-offset-2 ${t.link}`}
@@ -276,19 +293,28 @@ export default function ContactForm({
             </a>{" "}
             and{" "}
             <a
-              href="/terms"
+              href="https://stabilisiq.com/terms"
               target="_blank"
               rel="noopener noreferrer"
               className={`font-semibold underline underline-offset-2 ${t.link}`}
             >
-              Terms
+              Terms of Service
             </a>
             .
           </label>
         </div>
         <p className="mt-3 pl-8 text-[12px] text-ink-500 leading-relaxed">
           Optional. You can send this form without checking the box — we just
-          won&apos;t text you if you leave it unchecked.
+          won&apos;t text you if you leave it unchecked. Full details in our{" "}
+          <a
+            href="https://stabilisiq.com/sms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-2"
+          >
+            SMS terms
+          </a>
+          .
         </p>
       </div>
 

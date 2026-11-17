@@ -30,7 +30,7 @@ export default function TermsOfServicePage() {
         <div className="mx-auto max-w-3xl px-5">
 
             <h1 className="font-head text-4xl md:text-[52px] font-bold tracking-tight leading-[1.05] mb-3">Terms of Service</h1>
-            <p className="text-[15px] text-ink-500 mb-12">Last Updated: January 17, 2026</p>
+            <p className="text-[15px] text-ink-500 mb-12">Last Updated: November 17, 2026</p>
 
             <div className="space-y-10">
               <section>
@@ -144,8 +144,28 @@ export default function TermsOfServicePage() {
                 </p>
               </section>
 
+              <section id="sms">
+                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">12. Text Messaging Program</h2>
+                <p className="text-[17px] text-ink-700 leading-[1.7] mb-4">
+                  StabilisIQ LLC sends text messages from (888) 913-2301 to people who opt in by ticking the optional SMS box on our contact form, and replies to people who text that number first. By opting in, you agree to receive text messages from StabilisIQ about your inquiry, including replies, scheduling messages, and demo texts you request. Every message identifies StabilisIQ, and demo messages begin with &quot;StabilisIQ demo&quot;. We do not send marketing or promotional texts.
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-[17px] text-ink-700 leading-[1.7] mb-4 marker:text-ink-500">
+                  <li>Message frequency varies.</li>
+                  <li>Message and data rates may apply.</li>
+                  <li>Reply STOP to cancel at any time. Reply HELP for help.</li>
+                  <li>For support, email matt@stabilisiq.com.</li>
+                  <li>Wireless carriers are not liable for delayed or undelivered messages.</li>
+                  <li>Opting in is optional and is not a condition of using our website or services.</li>
+                </ul>
+                <p className="text-[17px] text-ink-700 leading-[1.7]">
+                  Participation is subject to our{" "}
+                  <a href="/privacy" className="underline underline-offset-4">Privacy Policy</a>. Full program details, including sample messages, are in our{" "}
+                  <a href="/sms" className="underline underline-offset-4">SMS Terms</a>.
+                </p>
+              </section>
+
               <section>
-                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">12. Governing Law and Dispute Resolution</h2>
+                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">13. Governing Law and Dispute Resolution</h2>
                 <p className="text-[17px] text-ink-700 leading-[1.7] mb-4">
                   These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of laws principles.
                 </p>
@@ -155,14 +175,14 @@ export default function TermsOfServicePage() {
               </section>
 
               <section>
-                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">13. Changes to Terms</h2>
+                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">14. Changes to Terms</h2>
                 <p className="text-[17px] text-ink-700 leading-[1.7]">
                   StabilisIQ reserves the right to modify these Terms at any time. Material changes will be communicated to active clients with reasonable advance notice. Continued use of services after such changes constitutes acceptance of the modified Terms.
                 </p>
               </section>
 
               <section>
-                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">14. Contact Information</h2>
+                <h2 className="font-head text-2xl md:text-[28px] font-bold tracking-tight text-ink-900 mb-4 mt-2">15. Contact Information</h2>
                 <p className="text-[17px] text-ink-700 leading-[1.7] mb-4">
                   For questions regarding these Terms, please contact:
                 </p>
